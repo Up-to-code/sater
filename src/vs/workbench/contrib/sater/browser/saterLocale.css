@@ -1,0 +1,16 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Sater's first RTL seam: interface chrome follows the chosen language while code surfaces stay LTR. */
+.sater-interface-rtl .monaco-workbench {
+	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sater-interface-rtl .monaco-editor,
+.sater-interface-rtl .xterm,
+.sater-interface-rtl .terminal-wrapper,
+.sater-interface-rtl .debug-console {
+	direction: ltr;
+}

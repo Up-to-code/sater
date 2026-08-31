@@ -1,0 +1,24 @@
+{
+	"name": "sater-theme",
+	"displayName": "Sater Theme",
+	"description": "The default color theme for Sater.",
+	"version": "1.0.0",
+	"publisher": "sater",
+	"license": "MIT",
+	"engines": {
+		"vscode": "*"
+	},
+	"categories": [
+		"Themes"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"id": "Sater Dark",
+				"label": "Sater Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/sater-dark-color-theme.json"
+			}
+		]
+	}
+}

@@ -1,0 +1,103 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Sater presentation for the upstream Agents Window. Teal is reserved for focus and progress. */
+
+.monaco-workbench.agent-sessions-workbench {
+	background: #111111;
+	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.monaco-workbench.agent-sessions-workbench.shell-gradient-background::before {
+	background: #111111;
+}
+
+.agent-sessions-workbench .part.sidebar,
+.agent-sessions-workbench .part.sidebar > .content,
+.agent-sessions-workbench .part.sidebar > .sidebar-footer {
+	background: #151515 !important;
+}
+
+.agent-sessions-workbench .monaco-grid-view .part.editor:not(.modal-editor-part),
+.agent-sessions-workbench .agents-part-card,
+.agent-sessions-workbench:not(.dock-detail-panel) .part.auxiliarybar,
+.agent-sessions-workbench .part.panel {
+	background: #171717;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.agent-sessions-workbench .monaco-grid-view .part.editor:not(.modal-editor-part),
+.agent-sessions-workbench .agents-part-card,
+.agent-sessions-workbench:not(.dock-detail-panel) .part.auxiliarybar,
+.agent-sessions-workbench .part.panel,
+.agent-sessions-workbench .new-chat-input-area,
+.agent-sessions-workbench .chat-input-container {
+	border-radius: 8px;
+}
+
+.agent-sessions-workbench .agent-sessions-viewer .monaco-list-row,
+.agent-sessions-workbench .agent-sessions-viewpane .monaco-list-row {
+	border: 0;
+	border-radius: 6px;
+}
+
+.agent-sessions-workbench .monaco-list-row:hover:not(.selected):not(.focused) {
+	background: #222222;
+}
+
+.agent-sessions-workbench .monaco-list-row.selected,
+.agent-sessions-workbench .monaco-list-row.focused {
+	background: #2A2A2A;
+}
+
+.agent-sessions-workbench .agent-sessions-header {
+	color: #C2C2C2;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+.agent-sessions-workbench .new-chat-input-area,
+.agent-sessions-workbench .chat-input-container {
+	background: #222222;
+	border: 1px solid transparent;
+}
+
+.agent-sessions-workbench .new-chat-input-area:focus-within,
+.agent-sessions-workbench .chat-input-container:focus-within {
+	border-color: #2CCFA3;
+}
+
+.agent-sessions-workbench .codicon,
+.agent-sessions-workbench .monaco-action-bar .action-label {
+	color: #E8E8E8;
+}
+
+.agent-sessions-workbench .monaco-progress-container .progress-bit,
+.agent-sessions-workbench .active-item-indicator::before {
+	background: #2CCFA3;
+}
+
+.agent-sessions-workbench .monaco-button:not(.secondary) {
+	border: 0;
+	border-radius: 6px;
+	background: #F4F3EF;
+	color: #111111;
+}
+
+.agent-sessions-workbench .monaco-button:not(.secondary):hover {
+	background: #FFFFFF;
+}
+
+.sater-interface-rtl .agent-sessions-workbench {
+	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sater-interface-rtl .agent-sessions-workbench .monaco-editor,
+.sater-interface-rtl .agent-sessions-workbench .xterm {
+	direction: ltr;
+	font-family: var(--monaco-monospace-font, monospace);
+}
