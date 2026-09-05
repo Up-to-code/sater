@@ -417,7 +417,7 @@ export function showMobilePickerSheet(
 				pruneSearchRows();
 				searchRowsStore.clear();
 				const status = DOM.append(resultsContainer, $('div.mobile-picker-sheet-search-status'));
-				status.textContent = localize('mobilePickerSheet.searching', "Searching…");
+				status.textContent = localize('sater.sessions.mobile.picker.searching', "Searching…");
 
 				let results: readonly IMobilePickerSheetItem[];
 				try {
@@ -441,7 +441,7 @@ export function showMobilePickerSheet(
 				}
 				if (results.length === 0) {
 					const empty = DOM.append(resultsContainer, $('div.mobile-picker-sheet-search-empty'));
-					empty.textContent = search.emptyMessage ?? localize('mobilePickerSheet.noResults', "No results");
+					empty.textContent = search.emptyMessage ?? localize('sater.sessions.mobile.picker.noResults', "No results");
 					return;
 				}
 				for (const item of results) {
@@ -667,8 +667,8 @@ function buildMobileSheetShell(
 
 	if (!options.hideDoneButton) {
 		const doneBtn = DOM.append(titleRow, $('button.mobile-picker-sheet-done', { type: 'button' })) as HTMLButtonElement;
-		doneBtn.textContent = options.doneLabel ?? localize('mobilePickerSheet.done', "Done");
-		doneBtn.setAttribute('aria-label', localize('mobilePickerSheet.doneAriaLabel', "Close {0}", title));
+		doneBtn.textContent = options.doneLabel ?? localize('sater.sessions.mobile.picker.done', "Done");
+		doneBtn.setAttribute('aria-label', localize('sater.sessions.mobile.picker.doneAriaLabel', "Close {0}", title));
 		const doneGesture = Gesture.addTarget(doneBtn);
 		disposables.add(doneGesture);
 		const doneClick = DOM.addDisposableListener(doneBtn, DOM.EventType.CLICK, (e: MouseEvent) => {

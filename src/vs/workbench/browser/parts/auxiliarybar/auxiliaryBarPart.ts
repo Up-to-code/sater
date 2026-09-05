@@ -246,17 +246,17 @@ export class AuxiliaryBarPart extends AbstractPaneCompositePart {
 
 		const toggleShowLabelsAction = toAction({
 			id: 'workbench.action.auxiliarybar.toggleShowLabels',
-			label: this.configuration.showLabels ? localize('showIcons', "Show Icons") : localize('showLabels', "Show Labels"),
+			label: this.configuration.showLabels ? localize('sater.auxiliary.showIcons', "Show Icons") : localize('sater.auxiliary.showLabels', "Show Labels"),
 			enabled: this.configuration.canShowLabels,
 			run: () => this.configurationService.updateValue('workbench.secondarySideBar.showLabels', !this.configuration.showLabels)
 		});
 
 		actions.push(...[
 			new Separator(),
-			new SubmenuAction('workbench.action.panel.position', localize('activity bar position', "Activity Bar Position"), positionActions),
-			toAction({ id: ToggleSidebarPositionAction.ID, label: currentPositionRight ? localize('move second side bar left', "Move Secondary Side Bar Left") : localize('move second side bar right', "Move Secondary Side Bar Right"), run: () => this.commandService.executeCommand(ToggleSidebarPositionAction.ID) }),
+			new SubmenuAction('workbench.action.panel.position', localize('sater.auxiliary.position', "Activity Bar Position"), positionActions),
+			toAction({ id: ToggleSidebarPositionAction.ID, label: currentPositionRight ? localize('sater.auxiliary.moveLeft', "Move Secondary Side Bar Left") : localize('sater.auxiliary.moveRight', "Move Secondary Side Bar Right"), run: () => this.commandService.executeCommand(ToggleSidebarPositionAction.ID) }),
 			toggleShowLabelsAction,
-			toAction({ id: ToggleAuxiliaryBarAction.ID, label: localize('hide second side bar', "Hide Secondary Side Bar"), run: () => this.commandService.executeCommand(ToggleAuxiliaryBarAction.ID) })
+			toAction({ id: ToggleAuxiliaryBarAction.ID, label: localize('sater.auxiliary.hide', "Hide Secondary Side Bar"), run: () => this.commandService.executeCommand(ToggleAuxiliaryBarAction.ID) })
 		]);
 	}
 

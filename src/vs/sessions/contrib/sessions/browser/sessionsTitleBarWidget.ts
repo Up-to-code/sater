@@ -63,7 +63,7 @@ export function registerBlockedSessionsHeaderActions(): IDisposable {
 		MenuRegistry.appendMenuItem(Menus.BlockedSessionsHeader, {
 			command: {
 				id: SHOW_ALL_SESSIONS_FROM_BLOCKED_LIST_COMMAND_ID,
-				title: localize('showAllSessions', "Show All Sessions"),
+				title: localize('sater.sessions.blocked.showAll', "Show All Sessions"),
 				icon: Codicon.listSelection,
 			},
 			group: 'navigation',
@@ -72,7 +72,7 @@ export function registerBlockedSessionsHeaderActions(): IDisposable {
 		MenuRegistry.appendMenuItem(Menus.BlockedSessionsHeader, {
 			command: {
 				id: IGNORE_ALL_INPUT_NEEDED_COMMAND_ID,
-				title: localize('ignoreAllInputNeeded', "Ignore All Input Needed"),
+				title: localize('sater.sessions.blocked.ignoreAll', "Ignore All Input Needed"),
 				icon: Codicon.bellSlash,
 			},
 			group: 'navigation',
@@ -81,7 +81,7 @@ export function registerBlockedSessionsHeaderActions(): IDisposable {
 		MenuRegistry.appendMenuItem(Menus.BlockedSessionsHeader, {
 			command: {
 				id: HIDE_BLOCKED_SESSIONS_COMMAND_ID,
-				title: localize('closeBlockedSessions', "Close"),
+				title: localize('sater.sessions.blocked.close', "Close"),
 				icon: Codicon.close,
 			},
 			group: 'z_close',
@@ -350,7 +350,7 @@ export class SessionsTitleBarWidget extends BaseActionViewItem {
 	 */
 	private _renderActiveSession(): void {
 		const container = this._container!;
-		container.setAttribute('aria-label', localize('agentSessionsShowSessions', "Show Sessions"));
+		container.setAttribute('aria-label', localize('sater.sessions.showSessions', "Show Sessions"));
 
 		const workspaceInfo = this._workspaceInfo;
 
@@ -373,7 +373,7 @@ export class SessionsTitleBarWidget extends BaseActionViewItem {
 			centerGroup.appendChild(workspaceIconEl);
 
 			const workspaceEl = $('div.agent-sessions-titlebar-workspace');
-			workspaceEl.textContent = localize('noWorkspace', "No workspace");
+			workspaceEl.textContent = localize('sater.sessions.noWorkspace', "No workspace");
 			centerGroup.appendChild(workspaceEl);
 		}
 

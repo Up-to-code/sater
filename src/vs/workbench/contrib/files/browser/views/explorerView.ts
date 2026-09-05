@@ -324,7 +324,7 @@ export class ExplorerView extends ViewPane implements IExplorerView {
 		const setHeader = () => {
 			titleElement.textContent = this.name;
 			this.updateTitle(this.name);
-			this.ariaHeaderLabel = nls.localize('explorerSection', "Explorer Section: {0}", this.name);
+			this.ariaHeaderLabel = nls.localize('sater.explorer.section', "Explorer Section: {0}", this.name);
 			titleElement.setAttribute('aria-label', this.ariaHeaderLabel);
 		};
 

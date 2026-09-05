@@ -32,6 +32,12 @@
 	mask-image: linear-gradient(to right, black calc(100% - 16px), transparent);
 }
 
+/* The fade follows the inline end edge when the Sessions shell is mirrored. */
+.sater-interface-rtl .mobile-session-filter-chips-scroll {
+	-webkit-mask-image: linear-gradient(to left, black calc(100% - 16px), transparent);
+	mask-image: linear-gradient(to left, black calc(100% - 16px), transparent);
+}
+
 .mobile-session-filter-chips-scroll::-webkit-scrollbar {
 	display: none;
 }

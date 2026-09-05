@@ -168,7 +168,7 @@ export class SessionsView extends ViewPane {
 		// widget mounts inside it.
 		const phoneLayout = isPhoneLayout(this.layoutService);
 		if (!phoneLayout) {
-			headerLabel.textContent = localize('sessionsHeader', "Sessions");
+			headerLabel.textContent = localize('sater.sessions.header', "Sessions");
 
 			// Header actions (visual order: New, Filter, Search). The "New" button is
 			// contributed to Menus.SidebarSessionsHeader and rendered as a compact pill

@@ -287,9 +287,11 @@ export abstract class AbstractRuntimeExtensionsEditor extends EditorPane {
 				const activationTimes = element.status.activationTimes;
 				if (activationTimes) {
 					const syncTime = activationTimes.codeLoadingTime + activationTimes.activateCallTime;
-					data.activationTime.textContent = activationTimes.activationReason.startup ? `Startup Activation: ${syncTime}ms` : `Activation: ${syncTime}ms`;
+					data.activationTime.textContent = activationTimes.activationReason.startup
+						? nls.localize('sater.extensions.startupActivationTime', 'Startup Activation: {0}ms', syncTime)
+						: nls.localize('sater.extensions.activationTime', 'Activation: {0}ms', syncTime);
 				} else {
-					data.activationTime.textContent = `Activating...`;
+					data.activationTime.textContent = nls.localize('sater.extensions.activating', 'Activating...');
 				}
 
 				data.actionbar.clear();

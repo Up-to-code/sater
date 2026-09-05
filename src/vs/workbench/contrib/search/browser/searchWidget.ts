@@ -443,7 +443,7 @@ export class SearchWidget extends Widget {
 		const inputOptions: IFindInputOptions = {
 			label: nls.localize('label.Search', 'Search: Type Search Term and press Enter to search'),
 			validation: (value: string) => this.validateSearchInput(value),
-			placeholder: nls.localize('search.placeHolder', "Search"),
+			placeholder: nls.localize('sater.search.placeholder', "Search"),
 			appendCaseSensitiveLabel: this.keybindingService.appendKeybinding('', Constants.SearchCommandIds.ToggleCaseSensitiveCommandId),
 			appendWholeWordsLabel: this.keybindingService.appendKeybinding('', Constants.SearchCommandIds.ToggleWholeWordCommandId),
 			appendRegexLabel: this.keybindingService.appendKeybinding('', Constants.SearchCommandIds.ToggleRegexCommandId),

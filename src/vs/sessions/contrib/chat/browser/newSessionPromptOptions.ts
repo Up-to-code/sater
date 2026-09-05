@@ -61,7 +61,7 @@ export class NewSessionPromptOptionsWidget extends Disposable {
 	) {
 		super();
 
-		const title = localize('newSessionPromptOptions.title', "Send your first prompt");
+		const title = localize('sater.sessions.promptOptions.title', "Send your first prompt");
 		this.element = dom.append(this._container, dom.$('.new-session-prompt-options'));
 		this.element.role = 'group';
 		this.element.ariaLabel = title;
@@ -71,7 +71,7 @@ export class NewSessionPromptOptionsWidget extends Disposable {
 		actionBar.getContainer().classList.add('new-session-prompt-options-actions');
 		const closeAction = this._register(new Action(
 			'newSessionPromptOptions.close',
-			localize('newSessionPromptOptions.close', "Close"),
+			localize('sater.sessions.promptOptions.close', "Close"),
 			ThemeIcon.asClassName(Codicon.close),
 			true,
 			() => this._options.onDidClose(),
@@ -145,7 +145,7 @@ export class NewSessionPromptOptionsWidget extends Disposable {
 		const buttons: IPromptOptionButton[] = [];
 		for (const option of options) {
 			const fullTitle = getFullTitle(option);
-			const ariaLabel = localize('newSessionPromptOptions.optionAriaLabel', "{0}: {1}", fullTitle, option.description);
+			const ariaLabel = localize('sater.sessions.promptOptions.optionAriaLabel', "{0}: {1}", fullTitle, option.description);
 			const button = store.add(new Button(this._optionsContainer, {
 				...promptOptionButtonStyles,
 				ariaLabel,

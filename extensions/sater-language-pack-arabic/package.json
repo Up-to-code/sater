@@ -1,0 +1,22 @@
+{
+	"name": "sater-language-pack-arabic",
+	"displayName": "Sater Arabic Language Pack",
+	"description": "Arabic localization for Sater and Code-OSS.",
+	"version": "0.1.0",
+	"publisher": "sater",
+	"license": "MIT",
+	"private": true,
+	"engines": { "vscode": "*" },
+	"contributes": {
+		"localizations": [
+			{
+				"languageId": "ar",
+				"languageName": "Arabic",
+				"localizedLanguageName": "العربية",
+				"translations": [
+					{ "id": "vscode", "path": "./translations/main.i18n.json" }
+				]
+			}
+		]
+	}
+}

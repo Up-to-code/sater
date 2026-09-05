@@ -169,12 +169,12 @@ export class PaneCompositeBar extends Disposable {
 			}
 		}
 
-		actions.push(new SubmenuAction('moveToMenu', localize('moveToMenu', "Move To"), moveActions));
+		actions.push(new SubmenuAction('moveToMenu', localize('sater.pane.moveTo', "Move To"), moveActions));
 
 		// Reset Location
 		if (defaultLocation !== currentLocation) {
 			actions.push(toAction({
-				id: 'resetLocationAction', label: localize('resetLocation', "Reset Location"), run: () => {
+				id: 'resetLocationAction', label: localize('sater.pane.resetLocation', "Reset Location"), run: () => {
 					this.viewDescriptorService.moveViewContainerToLocation(viewContainer, defaultLocation, undefined, 'resetLocationAction');
 					this.viewService.openViewContainer(viewContainer.id, true);
 				}
@@ -186,7 +186,7 @@ export class PaneCompositeBar extends Disposable {
 				const defaultContainer = this.viewDescriptorService.getDefaultContainerById(viewToReset.id)!;
 				if (defaultContainer !== viewContainer) {
 					actions.push(toAction({
-						id: 'resetLocationAction', label: localize('resetLocation', "Reset Location"), run: () => {
+					id: 'resetLocationAction', label: localize('sater.pane.resetLocation', "Reset Location"), run: () => {
 							this.viewDescriptorService.moveViewsToContainer([viewToReset], defaultContainer, undefined, 'resetLocationAction');
 							this.viewService.openViewContainer(viewContainer.id, true);
 						}
@@ -201,7 +201,7 @@ export class PaneCompositeBar extends Disposable {
 	private createMoveAction(viewContainer: ViewContainer, newLocation: ViewContainerLocation, defaultLocation: ViewContainerLocation): IAction {
 		return toAction({
 			id: `moveViewContainerTo${newLocation}`,
-			label: newLocation === ViewContainerLocation.Panel ? localize('panel', "Panel") : newLocation === ViewContainerLocation.Sidebar ? localize('sidebar', "Primary Side Bar") : localize('auxiliarybar', "Secondary Side Bar"),
+			label: newLocation === ViewContainerLocation.Panel ? localize('sater.pane.panel', "Panel") : newLocation === ViewContainerLocation.Sidebar ? localize('sater.pane.sidebar', "Primary Side Bar") : localize('sater.pane.auxiliaryBar', "Secondary Side Bar"),
 			run: () => {
 				let index: number | undefined;
 				if (newLocation !== defaultLocation) {

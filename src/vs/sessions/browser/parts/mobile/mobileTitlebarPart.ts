@@ -129,7 +129,7 @@ export class MobileTitlebarPart extends Disposable {
 		// agents-app sidebar toggle and reflects open/closed state via the
 		// SideBarVisibleContext key.
 		const hamburger = append(this.element, $('button.mobile-top-bar-button'));
-		hamburger.setAttribute('aria-label', localize('mobileTopBar.openSessions', "Open sessions"));
+		hamburger.setAttribute('aria-label', localize('sater.sessions.mobile.topBar.openSessions', "Open sessions"));
 		const hamburgerIcon = append(hamburger, $('span'));
 		const closedIconClasses = ThemeIcon.asClassNameArray(Codicon.layoutSidebarLeftOff);
 		const openIconClasses = ThemeIcon.asClassNameArray(Codicon.layoutSidebarLeft);
@@ -142,8 +142,8 @@ export class MobileTitlebarPart extends Disposable {
 			hamburgerIcon.classList.remove(...closedIconClasses, ...openIconClasses);
 			hamburgerIcon.classList.add(...(isOpen ? openIconClasses : closedIconClasses));
 			hamburger.setAttribute('aria-label', isOpen
-				? localize('mobileTopBar.closeSessions', "Close sessions")
-				: localize('mobileTopBar.openSessions', "Open sessions"));
+				? localize('sater.sessions.mobile.topBar.closeSessions', "Close sessions")
+				: localize('sater.sessions.mobile.topBar.openSessions', "Open sessions"));
 		};
 		updateSidebarIcon();
 
@@ -152,7 +152,7 @@ export class MobileTitlebarPart extends Disposable {
 
 		this.sessionTitleElement = append(center, $('button.mobile-session-title'));
 		this.sessionTitleElement.setAttribute('type', 'button');
-		this.sessionTitleElement.textContent = localize('mobileTopBar.newSession', "New Session");
+		this.sessionTitleElement.textContent = localize('sater.sessions.mobile.topBar.newSession', "New Session");
 		this._register(addDisposableListener(this.sessionTitleElement, EventType.CLICK, () => this._onDidClickTitle.fire()));
 
 		this.actionsContainer = append(center, $('div.mobile-top-bar-actions'));
@@ -165,7 +165,7 @@ export class MobileTitlebarPart extends Disposable {
 		// Tap → opens a file picker; selecting a file invokes the
 		// `sessions.mobile.openDiffView` command for that file's diff.
 		const changesPill = append(this.element, $('button.mobile-top-bar-button.mobile-changes-pill', { type: 'button' })) as HTMLButtonElement;
-		changesPill.setAttribute('aria-label', localize('mobileTopBar.changes', "View changes"));
+		changesPill.setAttribute('aria-label', localize('sater.sessions.mobile.topBar.changes', "View changes"));
 		changesPill.style.display = 'none';
 		const changesIcon = append(changesPill, $('span.mobile-changes-pill-icon'));
 		changesIcon.classList.add(...ThemeIcon.asClassNameArray(Codicon.diffMultiple));
@@ -176,14 +176,14 @@ export class MobileTitlebarPart extends Disposable {
 		// New session button (+) — shown when in a chat, hidden on welcome.
 		// Always rightmost when in a chat.
 		const newSessionButton = append(this.element, $('button.mobile-top-bar-button.mobile-new-session-button'));
-		newSessionButton.setAttribute('aria-label', localize('mobileTopBar.newSessionAria', "New session"));
+		newSessionButton.setAttribute('aria-label', localize('sater.sessions.mobile.topBar.newSessionAria', "New session"));
 		const newSessionIcon = append(newSessionButton, $('span'));
 		newSessionIcon.classList.add(...ThemeIcon.asClassNameArray(Codicon.plus));
 		this._register(addDisposableListener(newSessionButton, EventType.CLICK, () => this._onDidClickNewSession.fire()));
 
 		// Account indicator — shown on welcome/new session, hidden in a chat
 		this.accountButton = append(this.element, $('button.mobile-top-bar-button.mobile-account-indicator'));
-		this.accountButton.setAttribute('aria-label', localize('mobileTopBar.account', "Account"));
+		this.accountButton.setAttribute('aria-label', localize('sater.sessions.mobile.topBar.account', "Account"));
 		this.accountAvatarElement = append(this.accountButton, $('img.mobile-account-avatar', { alt: '', draggable: 'false' })) as HTMLImageElement;
 		this.accountAvatarElement.decoding = 'async';
 		this.accountAvatarElement.referrerPolicy = 'no-referrer';
@@ -210,7 +210,7 @@ export class MobileTitlebarPart extends Disposable {
 		this._register(autorun(reader => {
 			const session = this.sessionsService.activeSession.read(reader);
 			const title = session?.title.read(reader);
-			this.sessionTitleElement.textContent = title || localize('mobileTopBar.newSession', "New Session");
+			this.sessionTitleElement.textContent = title || localize('sater.sessions.mobile.topBar.newSession', "New Session");
 		}));
 
 		// Keep the changes pill in sync with the active session's changes.
@@ -232,15 +232,15 @@ export class MobileTitlebarPart extends Disposable {
 				if (added > 0 || removed > 0) {
 					changesAddedEl.textContent = `+${added}`;
 					changesRemovedEl.textContent = `-${removed}`;
-					changesPill.title = localize('mobileTopBar.changesTooltip', "{0} files changed (+{1} -{2})", changes.length, added, removed);
+					changesPill.title = localize('sater.sessions.mobile.topBar.changesTooltip', "{0} files changed (+{1} -{2})", changes.length, added, removed);
 				} else {
 					changesAddedEl.textContent = changes.length === 1
-						? localize('mobileTopBar.singleFileChanged', "1 file")
-						: localize('mobileTopBar.filesChangedCount', "{0} files", changes.length);
+						? localize('sater.sessions.mobile.topBar.singleFileChanged', "1 file")
+						: localize('sater.sessions.mobile.topBar.filesChangedCount', "{0} files", changes.length);
 					changesRemovedEl.textContent = '';
 					changesPill.title = changes.length === 1
-						? localize('mobileTopBar.singleFileChangedTooltip', "1 file changed")
-						: localize('mobileTopBar.filesChangedTooltip', "{0} files changed", changes.length);
+						? localize('sater.sessions.mobile.topBar.singleFileChangedTooltip', "1 file changed")
+						: localize('sater.sessions.mobile.topBar.filesChangedTooltip', "{0} files changed", changes.length);
 				}
 			}
 		};
@@ -470,9 +470,9 @@ export class MobileTitlebarPart extends Disposable {
 		// Header: title + close button
 		const header = append(sheet, $('div.mobile-account-sheet-header'));
 		const headerTitle = append(header, $('h2.mobile-account-sheet-title'));
-		headerTitle.textContent = localize('mobileAccount.title', "Account");
+		headerTitle.textContent = localize('sater.sessions.mobile.account.title', "Account");
 		const closeButton = append(header, $('button.mobile-account-sheet-close', { type: 'button' })) as HTMLButtonElement;
-		closeButton.setAttribute('aria-label', localize('mobileAccount.close', "Close"));
+		closeButton.setAttribute('aria-label', localize('sater.sessions.mobile.account.close', "Close"));
 		append(closeButton, $('span')).classList.add(...ThemeIcon.asClassNameArray(Codicon.close));
 		panelStore.add(addDisposableListener(closeButton, EventType.CLICK, closeSheet));
 
@@ -492,14 +492,14 @@ export class MobileTitlebarPart extends Disposable {
 		}
 		const profileInfo = append(profile, $('div.mobile-account-sheet-profile-info'));
 		if (this.isAccountLoading) {
-			append(profileInfo, $('div.mobile-account-sheet-name')).textContent = localize('mobileAccount.loading', "Loading...");
+			append(profileInfo, $('div.mobile-account-sheet-name')).textContent = localize('sater.sessions.mobile.account.loading', "Loading...");
 		} else if (this.accountName) {
 			append(profileInfo, $('div.mobile-account-sheet-name')).textContent = this.accountName;
 			if (this.accountProviderLabel) {
 				append(profileInfo, $('div.mobile-account-sheet-provider')).textContent = this.accountProviderLabel;
 			}
 		} else {
-			append(profileInfo, $('div.mobile-account-sheet-name')).textContent = localize('mobileAccount.signedOut', "Not signed in");
+			append(profileInfo, $('div.mobile-account-sheet-name')).textContent = localize('sater.sessions.mobile.account.signedOut', "Not signed in");
 		}
 
 		// Copilot status dashboard — only when signed in AND entitlements

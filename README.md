@@ -10,7 +10,7 @@ Website: [sater.cc](https://sater.cc)
 
 ## Development status
 
-Sater is in early development. The current build establishes an independently branded, runnable Code - OSS distribution with the Sater Dark theme, Open VSX, a neutral Sater Agents Window, and a first-run English/Arabic interface choice. Arabic mode mirrors the primary sidebar and activity rail to the right, keeps Chat on the left, and applies Arabic UI typography while deliberately keeping source editors and terminals on an independent LTR code surface. The full Arabic translation catalog and mixed-direction editor engine remain active product work.
+Sater is in early development. The current build establishes an independently branded, runnable Code - OSS distribution with the Sater Dark theme, Open VSX, a neutral Sater Agents Window, and a first-run English/Arabic interface choice. Arabic mode mirrors the primary sidebar and activity rail to the right, keeps Chat on the left, applies Arabic UI typography, ships a bundled Code-OSS Arabic language pack, and gives source editors native first-strong-character direction while terminals and code-first lines remain LTR. Newly added upstream Agents, Sessions, and chat strings are tracked by the localization audit until their Arabic review is complete.
 
 Do not use this repository as a stable production editor yet.
 
@@ -48,6 +48,7 @@ Sater keeps product-specific work behind narrow integration points:
 - The Sater locale contribution owns the interface-language setting, first-run language choice, RTL shell direction, and code-surface direction boundary.
 - Approved brand assets live under `resources/sater`; generated platform icons remain in Code - OSS's standard resource paths.
 - Further Arabic behavior should use the isolated locale boundary first, Monaco changes second, and wider workbench/core changes only where platform abstractions cannot express the required behavior.
+- Catalog validation and language-pack generation are documented in [`docs/LOCALIZATION.md`](docs/LOCALIZATION.md). The user-facing screen and action inventory is maintained in [`map.md`](map.md).
 
 Every Sater-owned integration point and its expected merge risk is recorded in [`docs/UPSTREAM.md`](docs/UPSTREAM.md). Brand color roles are recorded in [`docs/DESIGN_TOKENS.md`](docs/DESIGN_TOKENS.md).
 

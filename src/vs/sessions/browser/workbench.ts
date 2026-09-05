@@ -15,7 +15,7 @@ import { DeferredPromise, RunOnceScheduler } from '../../base/common/async.js';
 import { isFullscreen, onDidChangeFullscreen, isChrome, isFirefox, isSafari } from '../../base/browser/browser.js';
 import { mark } from '../../base/common/performance.js';
 import { onUnexpectedError, setUnexpectedErrorHandler } from '../../base/common/errors.js';
-import { isWindows, isLinux, isWeb, isNative, isMacintosh, isIOS } from '../../base/common/platform.js';
+import { isWindows, isLinux, isWeb, isNative, isMacintosh, isIOS, Language } from '../../base/common/platform.js';
 import { Parts, Position, PanelAlignment, IWorkbenchLayoutService, SINGLE_WINDOW_PARTS, MULTI_WINDOW_PARTS, IPartVisibilityChangeEvent, positionToString } from '../../workbench/services/layout/browser/layoutService.js';
 import { ILayoutOffsetInfo } from '../../platform/layout/browser/layoutService.js';
 import { Part } from '../../workbench/browser/part.js';
@@ -83,6 +83,7 @@ import { ICustomViewGridPartService } from '../services/customView/browser/custo
 import { ICustomViewDescriptor } from '../services/customView/browser/customView.js';
 import { ISessionsSetUpService } from './sessionsSetUpService.js';
 import { AGENTS_FLOATING_PANEL_GAP } from '../common/layoutConstants.js';
+import { applySessionsInterfaceLanguage } from './sessionsLocale.js';
 
 const PHONE_NOTIFICATION_ROW_HEIGHT = 44;
 
@@ -422,6 +423,7 @@ export class Workbench extends Disposable implements IAgentWorkbenchLayoutServic
 	};
 
 	private mainWindowFullscreen = false;
+	private interfaceLanguage: 'en' | 'ar' = 'en';
 	private readonly maximized = new Set<number>();
 	protected readonly layoutPolicy = this._register(new SessionsLayoutPolicy());
 	private readonly mobileNavStack = this._register(new MobileNavigationStack());
@@ -884,6 +886,11 @@ export class Workbench extends Disposable implements IAgentWorkbenchLayoutServic
 	//#endregion
 
 	private renderWorkbench(instantiationService: IInstantiationService, notificationService: NotificationService, storageService: IStorageService, configurationService: IConfigurationService): void {
+		const configuredLanguage = configurationService.inspect<'en' | 'ar'>('sater.interfaceLanguage')?.userValue;
+		this.interfaceLanguage = configuredLanguage === 'ar' || configuredLanguage === 'en'
+			? configuredLanguage
+			: Language.value().toLowerCase().startsWith('ar') ? 'ar' : 'en';
+		applySessionsInterfaceLanguage(this.interfaceLanguage);
 		// ARIA & Signals
 		setARIAContainer(this.mainContainer);
 		setProgressAccessibilitySignalScheduler((msDelayTime: number, msLoopTime?: number) => instantiationService.createInstance(AccessibilityProgressSignalScheduler, msDelayTime, msLoopTime));
@@ -1762,10 +1769,12 @@ export class Workbench extends Disposable implements IAgentWorkbenchLayoutServic
 			size: rightSectionWidth
 		};
 
-		// Content section: Sidebar | Right section (horizontal)
+		// Content section follows the interface direction. The sessions/chat
+		// surface remains the leading pane in both languages; Arabic moves the
+		// navigation sidebar to the trailing edge of the window.
 		const contentSection: ISerializedNode = {
 			type: 'branch',
-			data: [sideBarNode, rightSection],
+			data: this.interfaceLanguage === 'ar' ? [rightSection, sideBarNode] : [sideBarNode, rightSection],
 			size: contentHeight
 		};
 
@@ -2185,8 +2194,8 @@ export class Workbench extends Disposable implements IAgentWorkbenchLayoutServic
 		const visible = !this.isSecondarySideBarVisible();
 		this.setAuxiliaryBarHidden(!visible);
 		alert(visible
-			? localize('auxiliaryBarVisible', "Secondary Side Bar shown")
-			: localize('auxiliaryBarHidden', "Secondary Side Bar hidden"));
+			? localize('sater.sessions.layout.auxiliaryBarVisible', "Secondary Side Bar shown")
+			: localize('sater.sessions.layout.auxiliaryBarHidden', "Secondary Side Bar hidden"));
 	}
 
 	isSecondarySideBarVisible(): boolean {

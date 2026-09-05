@@ -27,6 +27,10 @@
 			"project": "vscode-workbench"
 		},
 		{
+			"name": "vs/workbench/contrib/sater",
+			"project": "vscode-workbench"
+		},
+		{
 			"name": "vs/workbench/api/common",
 			"project": "vscode-workbench"
 		},

@@ -98,15 +98,15 @@ export class SessionsPolicyBlockedOverlay extends Disposable {
 	}
 
 	private _renderAgentDisabled(card: HTMLElement): void {
-		this.overlay.setAttribute('aria-label', localize('policyBlocked.aria', "Agents disabled by organization policy"));
+		this.overlay.setAttribute('aria-label', localize('sater.agents.policyBlocked.aria', "Agents disabled by organization policy"));
 
-		append(card, $('h2', undefined, localize('policyBlocked.title', "Agents Disabled")));
+		append(card, $('h2', undefined, localize('sater.agents.policyBlocked.title', "Agents Disabled")));
 
 		const description = append(card, $('p'));
-		append(description, document.createTextNode(localize('policyBlocked.description', "Your organization has disabled Agents via policy.")));
+		append(description, document.createTextNode(localize('sater.agents.policyBlocked.description', "Your organization has disabled Agents via policy.")));
 		append(description, document.createTextNode(' '));
 		const learnMore = append(description, $('a.sessions-policy-blocked-link')) as HTMLAnchorElement;
-		learnMore.textContent = localize('policyBlocked.learnMore', "Learn more");
+		learnMore.textContent = localize('sater.agents.policyBlocked.learnMore', "Learn more");
 		learnMore.href = 'https://aka.ms/VSCode/Agents/docs';
 		this._register(addDisposableListener(learnMore, EventType.CLICK, (e) => {
 			e.preventDefault();
@@ -114,30 +114,30 @@ export class SessionsPolicyBlockedOverlay extends Disposable {
 		}));
 
 		const button = this._register(new Button(card, { ...defaultButtonStyles, secondary: true }));
-		button.label = localize('policyBlocked.openVSCode', "Open VS Code");
+		button.label = localize('sater.sessions.policyBlocked.openVSCode', "Open VS Code");
 		this._register(button.onDidClick(() => this._openVSCode()));
 	}
 
 	private _renderLoading(card: HTMLElement): void {
-		this.overlay.setAttribute('aria-label', localize('loading.aria', "Loading"));
+		this.overlay.setAttribute('aria-label', localize('sater.sessions.policyBlocked.loadingAria', "Loading"));
 		append(card, $('div.sessions-policy-blocked-progress-bar', undefined,
 			$('div.sessions-policy-blocked-progress-bar-fill')
 		));
 	}
 
 	private _renderAccountPolicyGate(card: HTMLElement, options: ISessionsBlockedOverlayOptions): void {
-		this.overlay.setAttribute('aria-label', localize('accountGate.aria', "Sign-in required by your administrator"));
+		this.overlay.setAttribute('aria-label', localize('sater.sessions.policyBlocked.accountGateAria', "Sign-in required by your administrator"));
 
-		append(card, $('h2', undefined, localize('accountGate.title', "Sign-In Required")));
+		append(card, $('h2', undefined, localize('sater.sessions.policyBlocked.accountGateTitle', "Sign-In Required")));
 
 		const description = append(card, $('p'));
 		if (options.accountName) {
 			append(description, document.createTextNode(
-				localize('accountGate.descriptionWithAccount', "The account \"{0}\" is not a member of an organization that your administrator allows for Agents.", options.accountName)
+				localize('sater.sessions.policyBlocked.accountGateDescriptionWithAccount', "The account \"{0}\" is not a member of an organization that your administrator allows for Agents.", options.accountName)
 			));
 		} else {
 			append(description, document.createTextNode(
-				localize('accountGate.descriptionNoAccount', "Your administrator restricts Agents to members of the organizations below.")
+				localize('sater.sessions.policyBlocked.accountGateDescriptionNoAccount', "Your administrator restricts Agents to members of the organizations below.")
 			));
 		}
 
@@ -146,7 +146,7 @@ export class SessionsPolicyBlockedOverlay extends Disposable {
 		if (hasConcreteOrgs) {
 			const orgSection = append(card, $('div.sessions-policy-blocked-orgs'));
 			append(orgSection, $('p.sessions-policy-blocked-orgs-label', undefined,
-				localize('accountGate.approvedOrgs', "Allowed organizations:")
+				localize('sater.sessions.policyBlocked.accountGateApprovedOrgs', "Allowed organizations:")
 			));
 			const orgList = append(orgSection, $('ul'));
 			for (const org of approvedOrgs) {
@@ -155,10 +155,10 @@ export class SessionsPolicyBlockedOverlay extends Disposable {
 		}
 
 		const footer = append(card, $('p.sessions-policy-blocked-footer'));
-		append(footer, document.createTextNode(localize('accountGate.contactAdmin', "Contact your administrator for more information.")));
+		append(footer, document.createTextNode(localize('sater.sessions.policyBlocked.accountGateContactAdmin', "Contact your administrator for more information.")));
 		append(footer, document.createTextNode(' '));
 		const learnMore = append(footer, $('a.sessions-policy-blocked-link')) as HTMLAnchorElement;
-		learnMore.textContent = localize('accountGate.learnMore', "Learn more");
+		learnMore.textContent = localize('sater.sessions.policyBlocked.accountGateLearnMore', "Learn more");
 		learnMore.href = 'https://code.visualstudio.com/docs/enterprise/overview';
 		this._register(addDisposableListener(learnMore, EventType.CLICK, (e) => {
 			e.preventDefault();
@@ -166,40 +166,40 @@ export class SessionsPolicyBlockedOverlay extends Disposable {
 		}));
 
 		const signInButton = this._register(new Button(card, { ...defaultButtonStyles }));
-		signInButton.label = localize('accountGate.signIn', "Sign In");
+		signInButton.label = localize('sater.sessions.policyBlocked.accountGateSignIn', "Sign In");
 		this._register(signInButton.onDidClick(() => {
 			this.commandService.executeCommand('workbench.action.agenticSignIn');
 		}));
 	}
 
 	private _renderManagedSettingsRefresh(card: HTMLElement, freshness: ISessionsBlockedOverlayOptions['freshness']): void {
-		this.overlay.setAttribute('aria-label', localize('managedSettingsRefresh.aria', "Managed settings refresh required"));
-		append(card, $('h2', undefined, localize('managedSettingsRefresh.title', "Managed Settings Unavailable")));
+		this.overlay.setAttribute('aria-label', localize('sater.sessions.policyBlocked.managedSettingsRefreshAria', "Managed settings refresh required"));
+		append(card, $('h2', undefined, localize('sater.sessions.policyBlocked.managedSettingsRefreshTitle', "Managed Settings Unavailable")));
 
 		const message = freshness?.failure === ManagedSettingsFreshnessFailure.NoToken
-			? localize('managedSettingsRefresh.noToken', "Sign in so {0} can refresh your organization's managed settings before starting an agent.", this.productService.nameShort)
+			? localize('sater.sessions.policyBlocked.managedSettingsRefreshNoToken', "Sign in so {0} can refresh your organization's managed settings before starting an agent.", this.productService.nameShort)
 			: freshness?.failure === ManagedSettingsFreshnessFailure.RateLimited
-				? localize('managedSettingsRefresh.rateLimited', "Your organization's managed settings service is rate limiting requests. Try again later.")
+				? localize('sater.sessions.policyBlocked.managedSettingsRefreshRateLimited', "Your organization's managed settings service is rate limiting requests. Try again later.")
 				: freshness?.failure === ManagedSettingsFreshnessFailure.NoUrl
-					? localize('managedSettingsRefresh.noUrl', "{0} cannot locate your organization's managed settings service. Contact your administrator.", this.productService.nameShort)
+					? localize('sater.sessions.policyBlocked.managedSettingsRefreshNoUrl', "{0} cannot locate your organization's managed settings service. Contact your administrator.", this.productService.nameShort)
 					: freshness?.failure === ManagedSettingsFreshnessFailure.UpdateRequired
-						? localize('managedSettingsRefresh.updateRequired', "Update {0} to a version that supports your organization's managed settings before starting an agent.", this.productService.nameShort)
-						: localize('managedSettingsRefresh.failed', "Your organization requires {0} to refresh managed settings whenever it starts or reloads. An error prevented the required policy from being retrieved, so agents are unavailable. Retry, or contact your organization's administrator if the issue persists.", this.productService.nameShort);
+						? localize('sater.sessions.policyBlocked.managedSettingsRefreshUpdateRequired', "Update {0} to a version that supports your organization's managed settings before starting an agent.", this.productService.nameShort)
+						: localize('sater.sessions.policyBlocked.managedSettingsRefreshFailed', "Your organization requires {0} to refresh managed settings whenever it starts or reloads. An error prevented the required policy from being retrieved, so agents are unavailable. Retry, or contact your organization's administrator if the issue persists.", this.productService.nameShort);
 		append(card, $('p', undefined, message));
 
 		if (freshness?.failure === ManagedSettingsFreshnessFailure.NoToken) {
 			const signInButton = this._register(new Button(card, { ...defaultButtonStyles }));
-			signInButton.label = localize('managedSettingsRefresh.signIn', "Sign In");
+			signInButton.label = localize('sater.sessions.policyBlocked.managedSettingsRefreshSignIn', "Sign In");
 			this._register(signInButton.onDidClick(() => this.commandService.executeCommand('workbench.action.agenticSignIn')));
 		} else if (freshness?.failure !== ManagedSettingsFreshnessFailure.NoUrl
 			&& freshness?.failure !== ManagedSettingsFreshnessFailure.UpdateRequired) {
 			const retryButton = this._register(new Button(card, { ...defaultButtonStyles }));
-			retryButton.label = localize('managedSettingsRefresh.retry', "Retry");
+			retryButton.label = localize('sater.sessions.policyBlocked.managedSettingsRefreshRetry', "Retry");
 			this._register(retryButton.onDidClick(() => this.defaultAccountService.refresh({ forceRefresh: true, retryManagedSettings: true })));
 		}
 
 		const openVSCodeButton = this._register(new Button(card, { ...defaultButtonStyles, secondary: true }));
-		openVSCodeButton.label = localize('managedSettingsRefresh.openVSCode', "Open VS Code");
+		openVSCodeButton.label = localize('sater.sessions.policyBlocked.managedSettingsRefreshOpenVSCode', "Open VS Code");
 		this._register(openVSCodeButton.onDidClick(() => this._openVSCode()));
 	}
 

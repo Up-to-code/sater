@@ -3185,7 +3185,7 @@ export class SessionsList extends Disposable implements ISessionsList {
 		};
 
 		if (this.contextKeyService.getContextKeyValue<boolean>(ChatAutomationsEnabledContext.key)) {
-			children.push(renderSection({ id: AUTOMATIONS_SECTION_ID, label: localize('automations', "Automations"), sessions: [] }));
+			children.push(renderSection({ id: AUTOMATIONS_SECTION_ID, label: localize('sater.sessions.automation.section', "Automations"), sessions: [] }));
 		}
 
 		const pinnedSection = sections.find(s => s.id === 'pinned');

@@ -359,7 +359,7 @@ class MovedBlockOverlayWidget extends ViewZoneOverlayWidget {
 
 		const actionCompare = this._register(new Action(
 			'',
-			'Compare',
+			localize('sater.editor.diff.compareMovedCode', 'Compare'),
 			ThemeIcon.asClassName(Codicon.compareChanges),
 			true,
 			() => {

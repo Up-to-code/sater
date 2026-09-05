@@ -120,12 +120,12 @@ export class AutomationDialogService implements IAutomationDialogService {
 		let focusFirst: () => void = () => { };
 
 		const title = isEdit
-			? localize('automation.dialog.editTitle', "Edit automation")
-			: localize('automation.dialog.createTitle', "New automation");
+			? localize('sater.sessions.automation.editTitle', "Edit automation")
+			: localize('sater.sessions.automation.createTitle', "New automation");
 
 		const buttonLabels = [
-			isEdit ? localize('automation.dialog.save', "Save") : localize('automation.dialog.create', "Create"),
-			localize('automation.dialog.cancel', "Cancel"),
+			isEdit ? localize('sater.sessions.automation.save', "Save") : localize('sater.sessions.automation.create', "Create"),
+			localize('sater.sessions.automation.cancel', "Cancel"),
 		];
 
 		const activeContainer = this.layoutService.activeContainer;
@@ -162,8 +162,8 @@ export class AutomationDialogService implements IAutomationDialogService {
 
 					const description = DOM.append(container, $('.automation-description'));
 					description.textContent = isEdit
-						? localize('automation.dialog.editDescription', "Update the schedule, prompt, or run target for this automation.")
-						: localize('automation.dialog.createDescription', "Define a prompt that will run on a schedule against the selected target.");
+						? localize('sater.sessions.automation.editDescription', "Update the schedule, prompt, or run target for this automation.")
+						: localize('sater.sessions.automation.createDescription', "Define a prompt that will run on a schedule against the selected target.");
 
 					const formPane = DOM.append(container, $('.automation-form-pane'));
 					const form = DOM.append(formPane, $('.automation-form'));
