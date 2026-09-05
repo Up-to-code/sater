@@ -247,7 +247,7 @@ export interface NotebookPriorityInfo {
 export const searchConfigurationNode: IConfigurationNode = {
 	id: 'search',
 	order: 13,
-	title: nls.localize('searchConfigurationTitle', "Search"),
+	title: nls.localize('sater.activity.searchTitle', "Search"),
 	type: 'object',
 	properties: {}
 };

@@ -55,7 +55,7 @@ const sourceControlViewIcon = registerIcon('source-control-view-icon', Codicon.s
 
 const viewContainer = Registry.as<IViewContainersRegistry>(ViewContainerExtensions.ViewContainersRegistry).registerViewContainer({
 	id: VIEWLET_ID,
-	title: localize2('source control', 'Source Control'),
+	title: localize2('sater.activity.sourceControlTitle', 'Source Control'),
 	ctorDescriptor: new SyncDescriptor(SCMViewPaneContainer),
 	storageId: 'workbench.scm.views.state',
 	icon: sourceControlViewIcon,
@@ -65,7 +65,7 @@ const viewContainer = Registry.as<IViewContainersRegistry>(ViewContainerExtensio
 }, ViewContainerLocation.Sidebar, { doNotRegisterOpenCommand: true });
 
 const viewsRegistry = Registry.as<IViewsRegistry>(ViewContainerExtensions.ViewsRegistry);
-const containerTitle = localize('source control view', "Source Control");
+const containerTitle = localize('sater.scm.containerTitle', "Source Control");
 
 viewsRegistry.registerViewWelcomeContent(VIEW_PANE_ID, {
 	content: localize('no open repo', "No source control providers registered."),
@@ -91,7 +91,7 @@ viewsRegistry.registerViews([{
 	id: REPOSITORIES_VIEW_PANE_ID,
 	containerTitle,
 	name: localize2('scmRepositories', "Repositories"),
-	singleViewPaneContainerTitle: localize('source control repositories', "Source Control Repositories"),
+	singleViewPaneContainerTitle: localize('sater.scm.repositoriesTitle', "Source Control Repositories"),
 	ctorDescriptor: new SyncDescriptor(SCMRepositoriesViewPane),
 	canToggleVisibility: true,
 	hideByDefault: true,

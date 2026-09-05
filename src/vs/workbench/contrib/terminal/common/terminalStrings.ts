@@ -9,8 +9,8 @@ import { localize, localize2 } from '../../../../nls.js';
  * An object holding strings shared by multiple parts of the terminal
  */
 export const terminalStrings = {
-	terminal: localize('terminal', "Terminal"),
-	new: localize('terminal.new', "New Terminal"),
+	terminal: localize('sater.terminal.title', "Terminal"),
+	new: localize('sater.terminal.new', "New Terminal"),
 	doNotShowAgain: localize('doNotShowAgain', 'Do Not Show Again'),
 	currentSessionCategory: localize('currentSessionCategory', 'current session'),
 	previousSessionCategory: localize('previousSessionCategory', 'previous session'),
@@ -22,7 +22,7 @@ export const terminalStrings = {
 	focusAndHideAccessibleBuffer: localize2('workbench.action.terminal.focusAndHideAccessibleBuffer', "Focus Terminal and Hide Accessible Buffer"),
 	kill: {
 		...localize2('killTerminal', "Kill Terminal"),
-		short: localize('killTerminal.short', "Kill"),
+	short: localize('sater.terminal.kill', "Kill"),
 	},
 	moveToEditor: localize2('moveToEditor', "Move Terminal into Editor Area"),
 	moveIntoNewWindow: localize2('moveIntoNewWindow', "Move Terminal into New Window"),
@@ -32,7 +32,7 @@ export const terminalStrings = {
 	changeColor: localize2('workbench.action.terminal.changeColor', "Change Color..."),
 	split: {
 		...localize2('splitTerminal', "Split Terminal"),
-		short: localize('splitTerminal.short', "Split"),
+	short: localize('sater.terminal.split', "Split"),
 	},
 	unsplit: localize2('unsplitTerminal', "Unsplit Terminal"),
 	rename: localize2('workbench.action.terminal.rename', "Rename..."),

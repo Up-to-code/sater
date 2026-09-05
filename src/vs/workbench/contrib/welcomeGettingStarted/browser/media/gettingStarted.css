@@ -247,14 +247,6 @@
 	line-height: 34px;
 }
 
-.monaco-workbench .part.editor > .content .gettingStartedContainer.saterWelcome .sater-language-title-ar {
-	margin: 6px 0 32px;
-	color: var(--vscode-descriptionForeground);
-	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", sans-serif;
-	font-size: 18px;
-	line-height: 28px;
-}
-
 .monaco-workbench .part.editor > .content .gettingStartedContainer.saterWelcome .sater-language-choices {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -277,7 +269,7 @@
 }
 
 .monaco-workbench .part.editor > .content .gettingStartedContainer.saterWelcome .sater-language-choice[lang="ar"] {
-	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", sans-serif;
+	font-family: "Sater Arabic", "SF Arabic", "Geeza Pro", "Noto Sans Arabic", sans-serif;
 }
 
 .monaco-workbench .part.editor > .content .gettingStartedContainer.saterWelcome .sater-language-choice:hover {

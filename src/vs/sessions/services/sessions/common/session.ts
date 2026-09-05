@@ -889,7 +889,7 @@ export const SESSION_WORKSPACE_GROUP_REMOTE = localize('sessionWorkspaceGroup.re
  */
 export function getUntitledSessionTitle(isQuickChat: boolean): string {
 	return isQuickChat
-		? localize('agentSessions.newChat', "New Chat")
+		? localize('sater.agents.newChat', "New Chat")
 		: localize('agentSessions.newSession', "New Session");
 }
 

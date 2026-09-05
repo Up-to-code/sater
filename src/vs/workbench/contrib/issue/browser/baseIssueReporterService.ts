@@ -1625,11 +1625,11 @@ export class BaseIssueReporterService extends Disposable {
 				return;
 			}
 
-			const themeExclusionStr = numThemeExtensions ? `\n(${numThemeExtensions} theme extensions excluded)` : '';
+			const themeExclusionStr = numThemeExtensions ? `\n${localize('sater.issueReporter.themeExtensionsExcluded', '({0} theme extensions excluded)', numThemeExtensions)}` : '';
 			extensions = extensions || [];
 
 			if (!extensions.length) {
-				target.innerText = 'Extensions: none' + themeExclusionStr;
+				target.innerText = localize('sater.issueReporter.noExtensions', 'Extensions: none') + themeExclusionStr;
 				return;
 			}
 

@@ -276,7 +276,7 @@ export class SessionInputBanners extends Disposable {
 					number: 123,
 					uri: URI.parse('https://github.com/microsoft/vscode/pull/123'),
 				},
-				title: localize('inputBanner.examplePullRequest', "Example Pull Request"),
+				title: localize('sater.sessions.inputBanner.examplePullRequest', "Example Pull Request"),
 				failed: data.ciFailed,
 				completed: data.ciFailed,
 				pending: data.ciPending,
@@ -308,25 +308,25 @@ export class SessionInputBanners extends Disposable {
 		const reference = state.kind === 'pullRequest'
 			? {
 				label: `#${state.pullRequest.number}`,
-				hover: state.title
-					? localize('inputBanner.pullRequestHoverWithTitle', "Pull Request #{0}: {1}", state.pullRequest.number, state.title)
-					: localize('inputBanner.pullRequestHover', "Pull Request #{0}", state.pullRequest.number),
+					hover: state.title
+						? localize('sater.sessions.inputBanner.pullRequestHoverWithTitle', "Pull Request #{0}: {1}", state.pullRequest.number, state.title)
+						: localize('sater.sessions.inputBanner.pullRequestHover', "Pull Request #{0}", state.pullRequest.number),
 			}
 			: compact ? {
-				label: localize('inputBanner.agentReview', "Agent Review"),
-				hover: localize('inputBanner.agentReviewHover', "In-product agent review comments"),
+				label: localize('sater.sessions.inputBanner.agentReview', "Agent Review"),
+				hover: localize('sater.sessions.inputBanner.agentReviewHover', "In-product agent review comments"),
 			} : undefined;
 		const showReference = state.kind === 'pullRequest' ? state.multiplePullRequests : compact;
 		const position = compact
-			? localize('inputBanner.positionAria', "Item {0} of {1}", index + 1, total)
+			? localize('sater.sessions.inputBanner.positionAria', "Item {0} of {1}", index + 1, total)
 			: undefined;
 		const referenceLabel = showReference ? reference?.label : undefined;
 		const ariaLabel = position && referenceLabel
-			? localize('inputBanner.ariaLabelWithPositionAndReference', "{0}, {1}, {2}", position, referenceLabel, text)
+			? localize('sater.sessions.inputBanner.ariaLabelWithPositionAndReference', "{0}, {1}, {2}", position, referenceLabel, text)
 			: position
-				? localize('inputBanner.ariaLabelWithPosition', "{0}, {1}", position, text)
+				? localize('sater.sessions.inputBanner.ariaLabelWithPosition', "{0}, {1}", position, text)
 				: referenceLabel
-					? localize('inputBanner.ariaLabelWithReference', "{0}, {1}", referenceLabel, text)
+					? localize('sater.sessions.inputBanner.ariaLabelWithReference', "{0}, {1}", referenceLabel, text)
 					: text;
 
 		return {
@@ -336,7 +336,7 @@ export class SessionInputBanners extends Disposable {
 			text,
 			ariaLabel,
 			reference: showReference ? reference : undefined,
-			dismissTooltip: localize('inputBanner.dismiss', "Hide this item for this session"),
+			dismissTooltip: localize('sater.sessions.inputBanner.dismiss', "Hide this item for this session"),
 			actions: state.kind === 'pullRequest' ? this._pullRequestActions(state) : this._agentCommentActions(state),
 			focusAfterDismiss: () => this.chatWidgetService.getWidgetBySessionResource(state.sessionResource)?.focusInput(),
 			dismiss: () => { if (!state.debug) { this._dismiss(state.id); } },
@@ -347,33 +347,33 @@ export class SessionInputBanners extends Disposable {
 		const checks = state.failed > 0 ? this._checksText(state, compact) : undefined;
 		const comments = state.commentIds.length > 0 ? this._commentsText('pr', state.commentIds.length) : undefined;
 		return checks && comments
-			? localize('inputBanner.combinedText', "{0} | {1}", checks, comments)
+			? localize('sater.sessions.inputBanner.combinedText', "{0} | {1}", checks, comments)
 			: checks ?? comments ?? '';
 	}
 
 	private _checksText(state: IPRBannerState, compact: boolean): string {
 		if (compact) {
 			return state.failed === 1
-				? localize('inputBanner.oneCheckFailing', "1 Check Failing")
-				: localize('inputBanner.checksFailing', "{0} Checks Failing", state.failed);
+				? localize('sater.sessions.inputBanner.oneCheckFailing', "1 Check Failing")
+				: localize('sater.sessions.inputBanner.checksFailing', "{0} Checks Failing", state.failed);
 		}
 		const failedText = state.completed === 1
-			? localize('inputBanner.oneCheckFailed', "1 check failed")
-			: localize('inputBanner.checksFailed', "{0} out of {1} checks failed", state.failed, state.completed);
+			? localize('sater.sessions.inputBanner.oneCheckFailed', "1 check failed")
+			: localize('sater.sessions.inputBanner.checksFailed', "{0} out of {1} checks failed", state.failed, state.completed);
 		return state.pending > 0
-			? localize('inputBanner.checksFailedPending', "{0}, {1} pending", failedText, state.pending)
+			? localize('sater.sessions.inputBanner.checksFailedPending', "{0}, {1} pending", failedText, state.pending)
 			: failedText;
 	}
 
 	private _commentsText(kind: 'pr' | 'agent', count: number): string {
 		if (kind === 'pr') {
 			return count === 1
-				? localize('inputBanner.onePRComment', "1 PR Comment")
-				: localize('inputBanner.prComments', "{0} PR Comments", count);
+				? localize('sater.sessions.inputBanner.onePRComment', "1 PR Comment")
+				: localize('sater.sessions.inputBanner.prComments', "{0} PR Comments", count);
 		}
 		return count === 1
-			? localize('inputBanner.oneAgentComment', "1 Agent Comment")
-			: localize('inputBanner.agentComments', "{0} Agent Comments", count);
+			? localize('sater.sessions.inputBanner.oneAgentComment', "1 Agent Comment")
+			: localize('sater.sessions.inputBanner.agentComments', "{0} Agent Comments", count);
 	}
 
 	private _pullRequestActions(state: IPRBannerState): readonly ISessionInputBannerAction[] {
@@ -381,21 +381,21 @@ export class SessionInputBanners extends Disposable {
 		const hasComments = state.commentIds.length > 0;
 		const fixCI: ISessionInputBannerAction = {
 			id: 'fixCI',
-			label: localize('inputBanner.fixChecks', "Fix Checks"),
+			label: localize('sater.sessions.inputBanner.fixChecks', "Fix Checks"),
 			primary: true,
 			waitUntilReady: () => state.debug ? Promise.resolve(true) : this._waitForChatModel(state.sessionResource),
 			run: () => state.debug ? undefined : this._fixChecks(state),
 		};
 		const addressComments: ISessionInputBannerAction = {
 			id: 'addressComments',
-			label: localize('inputBanner.addressComments', "Address Comments"),
+			label: localize('sater.sessions.inputBanner.addressComments', "Address Comments"),
 			primary: true,
 			waitUntilReady: () => state.debug ? Promise.resolve(true) : this._waitForChatModel(state.sessionResource),
 			run: () => state.debug ? undefined : this._addressComments(state, this._queryFor(state, '/act-on-feedback')),
 		};
 		const primary = hasCI && hasComments ? {
 			id: 'fixCIAndAddressComments',
-			label: localize('inputBanner.fixChecksAndAddressComments', "Fix Checks & Address Comments"),
+			label: localize('sater.sessions.inputBanner.fixChecksAndAddressComments', "Fix Checks & Address Comments"),
 			primary: true,
 			dropdownActions: [fixCI, addressComments],
 			waitUntilReady: () => state.debug ? Promise.resolve(true) : this._waitForChatModel(state.sessionResource),
@@ -404,12 +404,12 @@ export class SessionInputBanners extends Disposable {
 
 		const revealCI: ISessionInputBannerAction = {
 			id: 'revealCI',
-			label: localize('inputBanner.revealChecks', "Reveal"),
+			label: localize('sater.sessions.inputBanner.revealChecks', "Reveal"),
 			run: () => { if (!state.debug) { void this._revealPullRequest(state.pullRequest); } },
 		};
 		const revealComments: ISessionInputBannerAction = {
 			id: 'revealComments',
-			label: localize('inputBanner.revealPRComments', "Reveal"),
+			label: localize('sater.sessions.inputBanner.revealPRComments', "Reveal"),
 			run: () => { if (!state.debug && state.firstCommentId) { this._revealComment(state.sessionResource, state.firstCommentId); } },
 		};
 		return hasCI && hasComments ? [primary] : [primary, hasCI ? revealCI : revealComments];
@@ -418,13 +418,13 @@ export class SessionInputBanners extends Disposable {
 	private _agentCommentActions(state: IAgentCommentsBannerState): readonly ISessionInputBannerAction[] {
 		return [{
 			id: 'addressComments',
-			label: localize('inputBanner.addressComments', "Address Comments"),
+			label: localize('sater.sessions.inputBanner.addressComments', "Address Comments"),
 			primary: true,
 			waitUntilReady: () => state.debug ? Promise.resolve(true) : this._waitForChatModel(state.sessionResource),
 			run: () => state.debug ? undefined : this._addressComments(state, '/act-on-feedback'),
 		}, {
 			id: 'revealComments',
-			label: localize('inputBanner.revealAgentComments', "Reveal"),
+			label: localize('sater.sessions.inputBanner.revealAgentComments', "Reveal"),
 			run: () => { if (!state.debug && state.firstCommentId) { this._revealComment(state.sessionResource, state.firstCommentId); } },
 		}];
 	}

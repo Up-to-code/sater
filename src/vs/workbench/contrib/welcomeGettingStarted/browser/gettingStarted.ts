@@ -264,6 +264,9 @@ export class GettingStartedPage extends EditorPane {
 			if (e.affectsConfiguration(REDUCED_MOTION_KEY)) {
 				this.container.classList.toggle('animatable', this.shouldAnimate());
 			}
+			if (e.affectsConfiguration(SATER_INTERFACE_LANGUAGE_SETTING) && !this.currentWalkthrough && this.container.classList.contains('saterWelcome')) {
+				this.buildSlideThrottle.queue(() => this.buildCategoriesSlide(true));
+			}
 		}));
 
 		this._register(this.gettingStartedService.onDidProgressStep(step => {
@@ -1051,52 +1054,33 @@ export class GettingStartedPage extends EditorPane {
 		}
 
 		const isArabic = this.configurationService.getValue<SaterInterfaceLanguage>(SATER_INTERFACE_LANGUAGE_SETTING) === 'ar';
-		const copy = isArabic ? {
-			// allow-any-unicode-next-line
-			subtitle: 'بيئة تطوير عربية أولاً',
-			// allow-any-unicode-next-line
-			openProject: 'فتح مشروع',
-			// allow-any-unicode-next-line
-			openProjectDescription: 'فتح مجلد من هذا الجهاز',
-			// allow-any-unicode-next-line
-			cloneRepository: 'نسخ مستودع',
-			// allow-any-unicode-next-line
-			cloneRepositoryDescription: 'نسخ مستودع Git من رابط',
-			// allow-any-unicode-next-line
-			connectSsh: 'الاتصال عبر SSH',
-			// allow-any-unicode-next-line
-			connectSshDescription: 'فتح بيئة تطوير بعيدة',
-			// allow-any-unicode-next-line
-			connectGithub: 'ربط GitHub',
-			// allow-any-unicode-next-line
-			connectGithubDescription: 'فتح GitHub لربط حسابك',
-			// allow-any-unicode-next-line
-			recentProjects: 'المشاريع الأخيرة',
-			// allow-any-unicode-next-line
-			showOnStartup: 'إظهار صفحة الترحيب عند بدء التشغيل'
-		} : {
-			subtitle: localize('saterWelcome.subtitle', "An Arabic-first developer environment"),
-			openProject: localize('saterWelcome.openProject', "Open project"),
-			openProjectDescription: localize('saterWelcome.openProject.description', "Open a folder from this computer"),
-			cloneRepository: localize('saterWelcome.cloneRepository', "Clone repository"),
-			cloneRepositoryDescription: localize('saterWelcome.cloneRepository.description', "Clone a Git repository from a URL"),
-			connectSsh: localize('saterWelcome.connectSsh', "Connect via SSH"),
-			connectSshDescription: localize('saterWelcome.connectSsh.description', "Open a remote development environment"),
-			connectGithub: localize('saterWelcome.connectGithub', "Connect GitHub"),
-			connectGithubDescription: localize('saterWelcome.connectGithub.description', "Open GitHub to connect your account"),
-			recentProjects: localize('saterWelcome.recentProjects', "Recent projects"),
+		const copy = {
+			// Translations are provided by the active Code-OSS language pack.
+			productName: localize('sater.welcome.title', "Sater"),
+			logoAlt: localize('sater.welcome.logoAlt', "Sater logo"),
+			subtitle: localize('sater.welcome.subtitle', "An Arabic-first developer environment"),
+			openProject: localize('sater.welcome.openProject', "Open project"),
+			openProjectDescription: localize('sater.welcome.openProject.description', "Open a folder from this computer"),
+			cloneRepository: localize('sater.welcome.cloneRepository', "Clone repository"),
+			cloneRepositoryDescription: localize('sater.welcome.cloneRepository.description', "Clone a Git repository from a URL"),
+			connectSsh: localize('sater.welcome.connectSsh', "Connect via SSH"),
+			connectSshDescription: localize('sater.welcome.connectSsh.description', "Open a remote development environment"),
+			connectGithub: localize('sater.welcome.connectGithub', "Connect GitHub"),
+			connectGithubDescription: localize('sater.welcome.connectGithub.description', "Open GitHub to connect your account"),
+			recentProjects: localize('sater.welcome.recentProjects', "Recent projects"),
 			showOnStartup: localize('welcomePage.showOnStartup', "Show welcome page on startup")
 		};
 		showOnStartupLabel.textContent = copy.showOnStartup;
 
 		const logo = $('img.sater-welcome-logo', {
-			alt: localize('saterWelcome.logoAlt', "Sater logo"),
+			alt: copy.logoAlt,
+			lang: isArabic ? 'ar' : 'en',
 			src: FileAccess.asBrowserUri('vs/../../resources/sater/logo-mark.png').toString(true)
 		});
 		const brand = $('.sater-welcome-brand', {},
 			logo,
 			$('.sater-welcome-brand-copy', {},
-				$('h1.sater-welcome-name', {}, localize('saterWelcome.productName', "Sater")),
+				$('h1.sater-welcome-name', { lang: isArabic ? 'ar' : 'en' }, copy.productName),
 				$('p.sater-welcome-subtitle', {}, copy.subtitle)
 			)
 		);
@@ -1104,8 +1088,10 @@ export class GettingStartedPage extends EditorPane {
 		const action = (label: string, description: string, icon: string, dispatch: string) =>
 			$('button.sater-welcome-action', {
 				'x-dispatch': dispatch,
+				lang: isArabic ? 'ar' : 'en',
+				dir: isArabic ? 'rtl' : 'ltr',
 				title: description,
-				'aria-label': `${label}. ${description}`
+				'aria-label': localize('sater.welcome.actionAriaLabel', '{0}. {1}', label, description)
 			},
 				$('span.sater-welcome-action-icon.codicon.' + icon),
 				$('span.sater-welcome-action-label', {}, label)
@@ -1141,6 +1127,7 @@ export class GettingStartedPage extends EditorPane {
 		const recentList = this.buildRecentlyOpenedList();
 		recentList.setLimit(6);
 		const recentElement = recentList.getDomElement();
+		// eslint-disable-next-line no-restricted-syntax
 		const recentHeading = recentElement.querySelector('h2');
 		if (recentHeading) {
 			recentHeading.textContent = copy.recentProjects;
@@ -1177,7 +1164,7 @@ export class GettingStartedPage extends EditorPane {
 				type: 'button',
 				lang: language,
 				dir: language === 'ar' ? 'rtl' : 'ltr',
-				'aria-label': `${label}. ${description}`
+				'aria-label': localize('sater.onboarding.languageChoiceAriaLabel', '{0}. {1}', label, description)
 			},
 				$('span.sater-language-choice-name', {}, label),
 				$('span.sater-language-choice-description', {}, description)
@@ -1186,20 +1173,17 @@ export class GettingStartedPage extends EditorPane {
 			return button;
 		};
 
-		const skip = $('button.sater-language-skip', { type: 'button' }, localize('saterLanguage.skip', "Skip"));
+		const skip = $('button.sater-language-skip', { type: 'button' }, localize('sater.onboarding.skip', "Skip"));
 		this.categoriesSlideDisposables.add(addDisposableListener(skip, 'click', () => selectLanguage('en')));
 
 		reset(this.categoriesSlide,
 			$('.sater-language-onboarding', {},
 				$('.sater-language-content', {},
-					$('p.sater-language-eyebrow', {}, localize('saterLanguage.welcome', "Welcome to Sater")),
-					$('h1.sater-language-title', {}, localize('saterLanguage.choose', "Choose your language")),
-					// allow-any-unicode-next-line
-					$('p.sater-language-title-ar', { lang: 'ar', dir: 'rtl' }, 'اختر لغتك'),
+					$('p.sater-language-eyebrow', {}, localize('sater.onboarding.welcome', "Welcome to Sater")),
+					$('h1.sater-language-title', {}, localize('sater.onboarding.chooseLanguage', "Choose your language")),
 					$('.sater-language-choices', {},
-						languageButton('en', 'English', 'Use Sater in English'),
-						// allow-any-unicode-next-line
-						languageButton('ar', 'العربية', 'استخدم سطر باللغة العربية')
+						languageButton('en', localize('sater.onboarding.english', 'English'), localize('sater.onboarding.englishDescription', 'Use Sater in English')),
+						languageButton('ar', localize('sater.onboarding.arabic', 'Arabic'), localize('sater.onboarding.arabicDescription', 'Use Sater in Arabic'))
 					),
 					skip
 				)

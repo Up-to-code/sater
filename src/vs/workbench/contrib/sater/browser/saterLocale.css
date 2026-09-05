@@ -3,14 +3,189 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-/* Sater's first RTL seam: interface chrome follows the chosen language while code surfaces stay LTR. */
-.sater-interface-rtl .monaco-workbench {
-	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+/* Sater's RTL seam: interface chrome follows the chosen language while code surfaces stay LTR. */
+html.sater-interface-rtl .monaco-workbench {
+	direction: rtl;
+	font-family: "Sater Arabic", "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Let embedded Latin names, paths, versions, and untranslated fallback text
+ * establish their own base direction without changing the surrounding chrome. */
+.sater-interface-rtl .monaco-workbench .monaco-icon-label-container,
+.sater-interface-rtl .monaco-workbench .monaco-highlighted-label,
+.sater-interface-rtl .monaco-workbench .description,
+.sater-interface-rtl .monaco-workbench .extension-editor .details .content-container,
+.sater-interface-rtl .monaco-workbench .extension-editor code {
+	unicode-bidi: plaintext;
+}
+
+.sater-interface-rtl .monaco-workbench .part.sidebar,
+.sater-interface-rtl .monaco-workbench .part.auxiliarybar,
+.sater-interface-rtl .monaco-workbench .part.activitybar {
+	direction: rtl;
 }
 
 .sater-interface-rtl .monaco-editor,
+.sater-interface-rtl .monaco-diff-editor,
+.sater-interface-rtl .xterm,
+.sater-interface-rtl .terminal-wrapper,
+.sater-interface-rtl .debug-console,
+.sater-interface-rtl .markdown-body {
+	direction: ltr;
+}
+
+/* Arabic typography is for chrome only; restore the configured code font in
+ * every technical content surface. */
+.sater-interface-rtl .monaco-editor,
+.sater-interface-rtl .monaco-diff-editor,
 .sater-interface-rtl .xterm,
 .sater-interface-rtl .terminal-wrapper,
 .sater-interface-rtl .debug-console {
-	direction: ltr;
+	font-family: var(--monaco-monospace-font, monospace);
+}
+
+/* Sater icons use crisp SVG silhouettes as masks so theme state controls their color. */
+.sater-icons .codicon-explorer-view-icon::before,
+.sater-icons .codicon-search-view-icon::before,
+.sater-icons .codicon-source-control-view-icon::before,
+.sater-icons .codicon-run-view-icon::before,
+.sater-icons .codicon-extensions-view-icon::before,
+.sater-icons .codicon-copy::before,
+.sater-icons .codicon-settings-gear::before,
+.sater-icons .codicon-chat-view-icon::before,
+.sater-icons .codicon-chat-sessions-icon::before,
+.sater-icons .codicon-chat-sparkle::before,
+.sater-icons .codicon-copilot::before {
+	content: '';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+/* Keep the navigation rail monochrome; accent color is reserved for focus and progress. */
+.sater-icons .part.activitybar .action-label,
+.sater-icons .part.activitybar .codicon {
+	color: var(--vscode-icon-foreground, #ffffff);
+}
+
+.sater-icons .codicon-explorer-view-icon::before {
+	-webkit-mask-image: var(--sater-icon-explorer);
+	mask-image: var(--sater-icon-explorer);
+}
+
+.sater-icons .codicon-search-view-icon::before {
+	-webkit-mask-image: var(--sater-icon-search);
+	mask-image: var(--sater-icon-search);
+}
+
+.sater-icons .codicon-source-control-view-icon::before {
+	-webkit-mask-image: var(--sater-icon-source-control);
+	mask-image: var(--sater-icon-source-control);
+}
+
+.sater-icons .codicon-run-view-icon::before {
+	-webkit-mask-image: var(--sater-icon-run-debug);
+	mask-image: var(--sater-icon-run-debug);
+}
+
+.sater-icons .codicon-extensions-view-icon::before {
+	-webkit-mask-image: var(--sater-icon-extensions);
+	mask-image: var(--sater-icon-extensions);
+}
+
+.sater-icons .codicon-copy::before {
+	-webkit-mask-image: var(--sater-icon-copy);
+	mask-image: var(--sater-icon-copy);
+}
+
+.sater-icons .codicon-settings-gear::before {
+	-webkit-mask-image: var(--sater-icon-settings);
+	mask-image: var(--sater-icon-settings);
+}
+
+.sater-icons .codicon-chat-view-icon::before,
+.sater-icons .codicon-chat-sessions-icon::before,
+.sater-icons .codicon-chat-sparkle::before,
+.sater-icons .codicon-copilot::before {
+	-webkit-mask-image: var(--sater-icon-agent);
+	mask-image: var(--sater-icon-agent);
+}
+
+.sater-icons .sater-welcome-action-icon {
+	content: '';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.sater-icons .sater-welcome-action-icon::before {
+	content: none;
+}
+
+.sater-icons .sater-welcome-action-icon.codicon-folder-opened {
+	-webkit-mask-image: var(--sater-icon-folder-open);
+	mask-image: var(--sater-icon-folder-open);
+}
+
+.sater-icons .sater-welcome-action-icon.codicon-repo-clone,
+.sater-icons .sater-welcome-action-icon.codicon-github-inverted {
+	-webkit-mask-image: var(--sater-icon-source-control);
+	mask-image: var(--sater-icon-source-control);
+}
+
+.sater-icons .sater-welcome-action-icon.codicon-remote {
+	-webkit-mask-image: var(--sater-icon-run-debug);
+	mask-image: var(--sater-icon-run-debug);
+}
+
+.sater-icons .explorer-folders-view .folder-icon::before,
+.sater-icons .explorer-folders-view .rootfolder-icon::before {
+	content: '' !important;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-color: currentColor !important;
+	background-image: none !important;
+	-webkit-mask: var(--sater-icon-folder-closed) center / contain no-repeat !important;
+	mask: var(--sater-icon-folder-closed) center / contain no-repeat !important;
+}
+
+.sater-icons .explorer-folders-view .monaco-tl-twistie.collapsible:not(.collapsed) + .monaco-tl-contents .folder-icon::before,
+.sater-icons .explorer-folders-view .monaco-tl-twistie.collapsible:not(.collapsed) + .monaco-tl-contents .rootfolder-icon::before {
+	-webkit-mask-image: var(--sater-icon-folder-open) !important;
+	mask-image: var(--sater-icon-folder-open) !important;
+}
+
+.sater-icons .explorer-folders-view .monaco-tl-twistie.collapsible::before {
+	content: '' !important;
+	width: 12px;
+	height: 12px;
+	background-color: currentColor;
+	-webkit-mask: var(--sater-icon-chevron-down) center / contain no-repeat;
+	mask: var(--sater-icon-chevron-down) center / contain no-repeat;
+	transform: none;
+}
+
+.sater-icons .explorer-folders-view .monaco-tl-twistie.collapsible.collapsed::before {
+	-webkit-mask-image: var(--sater-icon-chevron-right);
+	mask-image: var(--sater-icon-chevron-right);
+	transform: none;
+}
+
+.sater-interface-rtl.sater-icons .explorer-folders-view .monaco-tl-twistie.collapsible.collapsed::before {
+	transform: scaleX(-1);
 }

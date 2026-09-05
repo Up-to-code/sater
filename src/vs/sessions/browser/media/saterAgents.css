@@ -35,13 +35,13 @@
 .agent-sessions-workbench .part.panel,
 .agent-sessions-workbench .new-chat-input-area,
 .agent-sessions-workbench .chat-input-container {
-	border-radius: 8px;
+	border-radius: var(--vscode-cornerRadius-large);
 }
 
 .agent-sessions-workbench .agent-sessions-viewer .monaco-list-row,
 .agent-sessions-workbench .agent-sessions-viewpane .monaco-list-row {
 	border: 0;
-	border-radius: 6px;
+	border-radius: var(--vscode-cornerRadius-medium);
 }
 
 .agent-sessions-workbench .monaco-list-row:hover:not(.selected):not(.focused) {
@@ -55,15 +55,15 @@
 
 .agent-sessions-workbench .agent-sessions-header {
 	color: #C2C2C2;
-	font-size: 11px;
-	font-weight: 600;
+	font-size: var(--vscode-fontSize-label2);
+	font-weight: var(--vscode-fontWeight-semiBold);
 	letter-spacing: 0.04em;
 }
 
 .agent-sessions-workbench .new-chat-input-area,
 .agent-sessions-workbench .chat-input-container {
 	background: #222222;
-	border: 1px solid transparent;
+	border: var(--vscode-strokeThickness) solid transparent;
 }
 
 .agent-sessions-workbench .new-chat-input-area:focus-within,
@@ -83,7 +83,7 @@
 
 .agent-sessions-workbench .monaco-button:not(.secondary) {
 	border: 0;
-	border-radius: 6px;
+	border-radius: var(--vscode-cornerRadius-medium);
 	background: #F4F3EF;
 	color: #111111;
 }
@@ -92,12 +92,74 @@
 	background: #FFFFFF;
 }
 
-.sater-interface-rtl .agent-sessions-workbench {
-	font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+html.sater-interface-rtl .agent-sessions-workbench {
+	direction: rtl;
+	font-family: "Sater Arabic", "SF Arabic", "Geeza Pro", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* The sessions grid is declared left-to-right for the English shell. Reverse
+ * its top-level content columns for Arabic while keeping the code surfaces
+ * themselves left-to-right. */
+.sater-interface-rtl .agent-sessions-workbench .part.sidebar {
+	direction: rtl;
+}
+
+.sater-interface-rtl .agent-sessions-workbench .part.sessionspart,
+.sater-interface-rtl .agent-sessions-workbench .part.auxiliarybar,
+.sater-interface-rtl .agent-sessions-workbench .part.panel {
+	direction: rtl;
+}
+
+/* The grid itself is sized by the layout service, while this outer margin
+ * supplies the breathing room around the floating shell. Keep that breathing
+ * room on the visual trailing edge of the navigation rail: English has the
+ * rail on the left, Arabic has it on the right. Logical margins make the rule
+ * follow the interface direction instead of leaving a physical right gap. */
+.sater-interface-rtl .agent-sessions-workbench > .monaco-grid-view {
+	margin-block: 0 var(--vscode-agents-layout-floatingPanelGap);
+	margin-inline: 0 var(--vscode-agents-layout-floatingPanelGap);
+}
+
+.sater-interface-rtl .agent-sessions-workbench.nosidebar > .monaco-grid-view {
+	margin-inline: var(--vscode-agents-layout-floatingPanelGap) 0;
+}
+
+/* Cards use the same logical trailing gap as the shell. This is especially
+ * important when the sidebar is on the right: a physical `margin-right` puts
+ * the gap between the content and the RTL sidebar instead of at the window
+ * edge. */
+.sater-interface-rtl .agent-sessions-workbench .agents-part-card {
+	margin-inline: 0 var(--vscode-agents-layout-floatingPanelGap);
+}
+
+.sater-interface-rtl .agent-sessions-workbench.noeditorpane .agents-part-card {
+	margin-inline-end: 0;
+}
+
+/* The sessions shell mirrors its chrome, but content surfaces retain their
+ * own reading direction. Keep the project rail attached to the RTL edge and
+ * avoid physical left/right assumptions from the shared workbench styles. */
+.sater-interface-rtl .agent-sessions-workbench .projectbar.bordered::before {
+	inset-inline-start: 0;
+	inset-inline-end: auto;
+	border-inline-end: 0;
+	border-inline-start-style: solid;
+	border-inline-start-width: var(--vscode-strokeThickness);
 }
 
 .sater-interface-rtl .agent-sessions-workbench .monaco-editor,
-.sater-interface-rtl .agent-sessions-workbench .xterm {
+.sater-interface-rtl .agent-sessions-workbench .monaco-diff-editor,
+.sater-interface-rtl .agent-sessions-workbench .xterm,
+.sater-interface-rtl .agent-sessions-workbench .terminal-wrapper,
+.sater-interface-rtl .agent-sessions-workbench .debug-console,
+.sater-interface-rtl .agent-sessions-workbench .markdown-body {
 	direction: ltr;
+}
+
+.sater-interface-rtl .agent-sessions-workbench .monaco-editor,
+.sater-interface-rtl .agent-sessions-workbench .monaco-diff-editor,
+.sater-interface-rtl .agent-sessions-workbench .xterm,
+.sater-interface-rtl .agent-sessions-workbench .terminal-wrapper,
+.sater-interface-rtl .agent-sessions-workbench .debug-console {
 	font-family: var(--monaco-monospace-font, monospace);
 }

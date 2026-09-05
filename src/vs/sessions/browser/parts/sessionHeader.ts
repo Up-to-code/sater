@@ -336,7 +336,7 @@ export class SessionHeader extends Disposable {
 		input.className = 'chat-composite-bar-session-title-input';
 		input.value = initialTitle;
 		input.placeholder = fallbackTitle;
-		input.setAttribute('aria-label', localize('renameSession.aria', "Rename session"));
+		input.setAttribute('aria-label', localize('sater.sessions.renameAria', "Rename session"));
 		input.spellcheck = false;
 
 		this._titleTextEl.style.display = 'none';

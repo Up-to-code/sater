@@ -766,7 +766,7 @@ export class NewChatInputWidget extends Disposable implements IHistoryNavigation
 				? localize('chatInput.accessibilityHelp', "Chat input. Press Enter to send out the request. Use {0} for Chat Accessibility Help.", kbLabel)
 				: localize('chatInput.accessibilityHelpNoKb', "Chat input. Press Enter to send out the request. Use the Chat Accessibility Help command for more information.");
 		}
-		return localize('chatInput', "Chat input");
+		return localize('sater.chat.input', "Chat input");
 	}
 
 	private _getTerminalCommandPrefix(): string | undefined {

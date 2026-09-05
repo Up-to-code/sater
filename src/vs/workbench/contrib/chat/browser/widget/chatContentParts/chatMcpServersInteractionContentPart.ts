@@ -235,7 +235,7 @@ export class ChatMcpServersInteractionContentPart extends Disposable implements 
 			// Reset link on error
 			startLink.style.pointerEvents = '';
 			startLink.style.opacity = '';
-			startLink.textContent = 'Start now?';
+			startLink.textContent = localize('sater.chat.mcp.startNow', 'Start now?');
 		}
 	}
 

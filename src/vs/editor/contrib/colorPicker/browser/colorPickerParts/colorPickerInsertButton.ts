@@ -6,6 +6,7 @@ import '../colorPicker.css';
 import * as dom from '../../../../../base/browser/dom.js';
 import { Emitter } from '../../../../../base/common/event.js';
 import { Disposable } from '../../../../../base/common/lifecycle.js';
+import { localize } from '../../../../../nls.js';
 
 export class InsertButton extends Disposable {
 
@@ -17,7 +18,7 @@ export class InsertButton extends Disposable {
 		super();
 		this._button = dom.append(container, document.createElement('button'));
 		this._button.classList.add('insert-button');
-		this._button.textContent = 'Insert';
+		this._button.textContent = localize('sater.editor.colorPicker.insert', 'Insert');
 		this._register(dom.addDisposableListener(this._button, dom.EventType.CLICK, () => {
 			this._onClicked.fire();
 		}));

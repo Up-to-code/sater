@@ -10,7 +10,7 @@
 
 .monaco-workbench .projectbar.bordered::before {
 	content: '';
-	float: left;
+	inset-inline-start: 0;
 	position: absolute;
 	box-sizing: border-box;
 	height: 100%;
@@ -19,9 +19,10 @@
 }
 
 .monaco-workbench .projectbar.left.bordered::before {
-	right: 0;
-	border-right-style: solid;
-	border-right-width: var(--vscode-strokeThickness);
+	inset-inline-start: auto;
+	inset-inline-end: 0;
+	border-inline-end-style: solid;
+	border-inline-end-width: var(--vscode-strokeThickness);
 }
 
 .monaco-workbench .projectbar > .content {
@@ -130,11 +131,22 @@
 /* Active item indicator (vertical bar on the left) */
 .monaco-workbench .projectbar .action-item .active-item-indicator {
 	position: absolute;
-	left: 0;
+	inset-inline-start: 0;
 	width: 2px;
 	height: 24px;
 	background-color: transparent;
-	border-radius: 0 var(--vscode-cornerRadius-xSmall) var(--vscode-cornerRadius-xSmall) 0;
+	border-start-end-radius: var(--vscode-cornerRadius-xSmall);
+	border-end-end-radius: var(--vscode-cornerRadius-xSmall);
+}
+
+/* Project bars mirror with the interface chrome. Keep the indicator and
+ * divider attached to the visual leading edge without duplicating layout. */
+.sater-interface-rtl .monaco-workbench .projectbar.left.bordered::before {
+	inset-inline-start: 0;
+	inset-inline-end: auto;
+	border-inline-end: 0;
+	border-inline-start-style: solid;
+	border-inline-start-width: var(--vscode-strokeThickness);
 }
 
 .monaco-workbench .projectbar .action-item.workspace-entry.checked .active-item-indicator {

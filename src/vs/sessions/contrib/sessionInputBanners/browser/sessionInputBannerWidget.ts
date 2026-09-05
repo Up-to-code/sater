@@ -168,7 +168,7 @@ export class SessionInputBannerWidget extends Disposable {
 			button.setTitle(action.label);
 			button.setAriaLabel(`${banner.ariaLabel} ${action.label}`);
 			if (button instanceof ButtonWithDropdown) {
-				button.dropdownButton.setAriaLabel(localize('sessionInputBanner.moreActionsFor', "More Actions for {0}", action.label));
+				button.dropdownButton.setAriaLabel(localize('sater.sessions.inputBanner.moreActionsFor', "More Actions for {0}", action.label));
 			}
 			this._buttons.push({ button, primary: !!action.primary });
 			store.add(button.onDidClick(() => { void this._runAction(bannerIdentity, actionIdentity).catch(onUnexpectedError); }));
@@ -262,7 +262,7 @@ export class SessionInputBannerWidget extends Disposable {
 	private _renderNavigation(store: DisposableStore): void {
 		const navigation = dom.append(this.domNode, dom.$('.session-input-banner-navigation'));
 		const previous = store.add(new Button(navigation, {
-			...this._navigationButtonOptions(localize('sessionInputBanner.previous', "Previous Banner")),
+			...this._navigationButtonOptions(localize('sater.sessions.inputBanner.previous', "Previous Banner")),
 		}));
 		previous.element.classList.add('session-input-banner-navigation-button', 'previous');
 		previous.icon = Codicon.chevronLeft;
@@ -270,10 +270,10 @@ export class SessionInputBannerWidget extends Disposable {
 		store.add(previous.onDidClick(() => this._move(-1, 'previous')));
 
 		const position = dom.append(navigation, dom.$('span.session-input-banner-position'));
-		position.textContent = localize('sessionInputBanner.position', "{0}/{1}", this._activeIndex + 1, this._banners.length);
+		position.textContent = localize('sater.sessions.inputBanner.position', "{0}/{1}", this._activeIndex + 1, this._banners.length);
 
 		const next = store.add(new Button(navigation, {
-			...this._navigationButtonOptions(localize('sessionInputBanner.next', "Next Banner")),
+			...this._navigationButtonOptions(localize('sater.sessions.inputBanner.next', "Next Banner")),
 		}));
 		next.element.classList.add('session-input-banner-navigation-button', 'next');
 		next.icon = Codicon.chevronRight;

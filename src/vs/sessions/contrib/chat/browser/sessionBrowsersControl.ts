@@ -21,9 +21,9 @@ import type { ISessionChatPillsDebugData } from './sessionChatInputToolbarDebug.
 export const sessionBrowsersPillOptions: IChatDropdownPillOptions = {
 	widgetId: 'sessionBrowsers',
 	icon: Codicon.globe,
-	title: localize('browsers.ariaLabel', "Browsers"),
-	summaryLabel: count => localize('browsers.activeBrowsers', "{0} Active Browsers", count),
-	summaryAriaLabel: count => localize('browsers.show', "Show {0} browsers", count),
+	title: localize('sater.sessions.browsers.title', "Browsers"),
+	summaryLabel: count => localize('sater.sessions.browsers.active', "{0} Active Browsers", count),
+	summaryAriaLabel: count => localize('sater.sessions.browsers.show', "Show {0} browsers", count),
 };
 
 const NO_URLS: ReadonlySet<string> = new Set();
@@ -86,9 +86,9 @@ export class SessionBrowsersControl extends Disposable {
 			const currentChat = chat.read(reader);
 			const browsers = debugData
 				? debugData.browsers.map(label => this._entry(label, undefined, currentChat))
-				: allBrowsers.read(reader).map(input => this._entry(input.title?.trim() || localize('browsers.browser', "Browser"), input, currentChat));
+				: allBrowsers.read(reader).map(input => this._entry(input.title?.trim() || localize('sater.sessions.browsers.browser', "Browser"), input, currentChat));
 			return browsers.length > 0
-				? [{ title: localize('browsers.browsers', "Browsers"), entries: browsers }]
+			? [{ title: localize('sater.sessions.browsers.group', "Browsers"), entries: browsers }]
 				: [];
 		});
 
