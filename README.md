@@ -75,3 +75,7 @@ Resolve conflicts inside the documented Sater integration points rather than spr
 Sater is licensed under the [MIT License](LICENSE.txt). It is based on Code - OSS by Microsoft Corporation and retains the upstream copyright notices, license, and third-party notices.
 
 Visual Studio Code and the Visual Studio Code Marketplace are Microsoft products. Sater is an independent project and is not affiliated with or endorsed by Microsoft.
+
+## Project links
+
+[Source](https://github.com/qentrah/sater) · [Issues](https://github.com/qentrah/sater/issues) · [Public project directory](https://github.com/qentrah/.github/blob/main/profile/PROJECTS.md)
