@@ -867,7 +867,7 @@ export class FilesRenderer implements ICompressibleTreeRenderer<ExplorerItem, Fu
 	}
 
 	getWidgetAriaLabel(): string {
-		return localize('treeAriaLabel', "Files Explorer");
+		return localize('sater.explorer.files', "Files Explorer");
 	}
 
 	get templateId(): string {

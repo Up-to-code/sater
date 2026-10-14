@@ -337,7 +337,7 @@ export class SidebarPart extends AbstractPaneCompositePart {
 			constructor() {
 				super({
 					id: ToggleActivityBarVisibilityActionId,
-					title: localize2('toggleActivityBar', "Toggle Activity Bar Visibility"),
+					title: localize2('sater.sidebar.toggleActivityBar', "Toggle Activity Bar Visibility"),
 				});
 			}
 			run(): Promise<void> {

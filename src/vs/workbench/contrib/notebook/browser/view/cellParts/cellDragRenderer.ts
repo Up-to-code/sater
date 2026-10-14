@@ -14,6 +14,7 @@ import { ColorId } from '../../../../../../editor/common/encodedTokenAttributes.
 import * as languages from '../../../../../../editor/common/languages.js';
 import { tokenizeLineToHTML } from '../../../../../../editor/common/languages/textToHtmlTokenizer.js';
 import { ITextModel } from '../../../../../../editor/common/model.js';
+import { localize } from '../../../../../../nls.js';
 import { BaseCellRenderTemplate } from '../notebookRenderingCommon.js';
 
 class EditorTextRenderer {
@@ -100,7 +101,7 @@ export class CodeCellDragImageRenderer {
 		if (!dragImage) {
 			// TODO@roblourens I don't think this can happen
 			dragImage = document.createElement('div');
-			dragImage.textContent = '1 cell';
+			dragImage.textContent = localize('sater.notebook.drag.oneCell', '1 cell');
 		}
 
 		return dragImage;

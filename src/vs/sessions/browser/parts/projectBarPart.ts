@@ -270,7 +270,7 @@ export class ProjectBarPart extends Part {
 				{
 					appearance: { showPointer: true },
 					position: { hoverPosition: HoverPosition.RIGHT },
-					content: 'Add Folder to Project'
+					content: localize('sater.sessions.addFolderToProject', "Add Folder to Project")
 				},
 				{ groupId: HOVER_GROUP_ID }
 			)
@@ -286,7 +286,7 @@ export class ProjectBarPart extends Part {
 		// Keyboard support
 		this.addFolderButton.setAttribute('tabindex', '0');
 		this.addFolderButton.setAttribute('role', 'button');
-		this.addFolderButton.setAttribute('aria-label', 'Add Folder to Project');
+		this.addFolderButton.setAttribute('aria-label', localize('sater.sessions.addFolderToProject', "Add Folder to Project"));
 		this.workspaceEntryDisposables.value?.add(
 			addDisposableListener(this.addFolderButton, EventType.KEY_DOWN, (e: KeyboardEvent) => {
 				if (e.key === 'Enter' || e.key === ' ') {
@@ -299,8 +299,8 @@ export class ProjectBarPart extends Part {
 
 	private async pickAndAddFolder(): Promise<void> {
 		const folders = await this.fileDialogService.showOpenDialog({
-			openLabel: 'Add',
-			title: 'Add Folder to Project',
+			openLabel: localize('sater.sessions.add', "Add"),
+			title: localize('sater.sessions.addFolderToProject', "Add Folder to Project"),
 			canSelectFolders: true,
 			canSelectMany: false,
 			defaultUri: await this.fileDialogService.defaultFolderPath(),
@@ -396,9 +396,9 @@ export class ProjectBarPart extends Part {
 				this.contextMenuService.showContextMenu({
 					getAnchor: () => event,
 					getActions: () => [
-						new Action('projectbar.customize', localize('projectbar.customize', "Customize"), undefined, true, () => this.showCustomizeQuickPick(index)),
+						new Action('projectbar.customize', localize('sater.sessions.project.customize', "Customize"), undefined, true, () => this.showCustomizeQuickPick(index)),
 						new Separator(),
-						new Action('projectbar.removeFolder', localize('projectbar.removeFolder', "Remove Folder"), undefined, true, () => this.removeFolderEntry(index))
+						new Action('projectbar.removeFolder', localize('sater.sessions.project.removeFolder', "Remove Folder"), undefined, true, () => this.removeFolderEntry(index))
 					]
 				});
 			})

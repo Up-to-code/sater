@@ -429,20 +429,20 @@ class AutomationCardsSection extends Disposable {
 			const dispatch = await operation.whenDispatched;
 			switch (dispatch.kind) {
 				case 'started':
-					status(localize('automationStartedStatus', "Started automation {0}", automation.name));
+					status(localize('sater.sessions.automation.startedStatus', "Started automation {0}", automation.name));
 					break;
 				case 'alreadyRunning':
-					status(localize('automationAlreadyRunningStatus', "Automation {0} is already running", automation.name));
+					status(localize('sater.sessions.automation.alreadyRunningStatus', "Automation {0} is already running", automation.name));
 					break;
 				case 'notStarted':
-					status(localize('automationNotStartedStatus', "Automation {0} did not start", automation.name));
+					status(localize('sater.sessions.automation.notStartedStatus', "Automation {0} did not start", automation.name));
 					break;
 			}
 			await operation.whenCompleted;
 		} catch (error) {
 			this.logService.error('[AutomationsCards] Failed to run automation', error);
 			await this.dialogService.error(
-				localize('automationRunActionFailed', "Failed to run automation."),
+				localize('sater.sessions.automation.runActionFailed', "Failed to run automation."),
 				getErrorMessage(error),
 			);
 		}
@@ -450,15 +450,15 @@ class AutomationCardsSection extends Disposable {
 
 	private renderEmptyState(): void {
 		const title = DOM.append(this.emptyContainer, $('h3.automations-cards-empty-title'));
-		title.textContent = localize('noAutomationsYet', "No automations yet");
+		title.textContent = localize('sater.sessions.automation.emptyTitle', "No automations yet");
 		const desc = DOM.append(this.emptyContainer, $('p.automations-cards-empty-description'));
-		desc.textContent = localize('noAutomationsDesc', "Create an automation to schedule an agent session to run on a cadence you choose.");
+		desc.textContent = localize('sater.sessions.automation.emptyDescription', "Create an automation to schedule an agent session to run on a cadence you choose.");
 
 		const createButton = this.emptyStateDisposables.add(new Button(this.emptyContainer, {
 			...defaultButtonStyles,
-			title: localize('createAutomation', "Create Automation"),
+			title: localize('sater.sessions.automation.createButton', "Create Automation"),
 		}));
-		createButton.label = localize('createAutomation', "Create Automation");
+		createButton.label = localize('sater.sessions.automation.createButton', "Create Automation");
 		createButton.element.classList.add('automations-cards-create-button');
 		this.emptyStateDisposables.add(createButton.onDidClick(() => this.openCreateDialog()));
 	}
@@ -1080,7 +1080,7 @@ async function confirmAndDeleteAutomation(
 	} catch (error) {
 		logService.error('[AutomationsCards] Failed to delete automation', error);
 		await dialogService.error(
-			localize('automationDeleteFailed', "Failed to delete automation."),
+			localize('sater.sessions.automation.deleteFailed', "Failed to delete automation."),
 			getErrorMessage(error),
 		);
 	}
@@ -1096,9 +1096,9 @@ async function confirmAndDeleteAutomation(
  */
 export class AutomationsCustomView extends AbstractCustomView {
 
-	readonly title: IObservable<string> = constObservable(localize('automationsTitle', "Automations"));
+	readonly title: IObservable<string> = constObservable(localize('sater.sessions.automation.title', "Automations"));
 	override readonly description: IObservable<string | undefined> = constObservable(
-		localize('automationsDescription', "Schedule agent sessions to run automatically on a cadence you choose."));
+		localize('sater.sessions.automation.description', "Schedule agent sessions to run automatically on a cadence you choose."));
 
 	private _widget: AutomationsCardsWidget | undefined;
 

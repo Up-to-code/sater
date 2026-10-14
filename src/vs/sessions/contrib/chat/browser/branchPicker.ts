@@ -81,7 +81,7 @@ interface IBranchPickerItem {
 export class BranchPicker extends Disposable {
 	private readonly _renderDisposables = this._register(new DisposableStore());
 	private _state: IBranchPickerState = {
-		label: localize('branchPicker.select', "Branch"),
+		label: localize('sater.sessions.branchPicker.select', "Branch"),
 		branches: [],
 		status: 'empty',
 		canOpen: false,
@@ -241,13 +241,13 @@ export class BranchPicker extends Disposable {
 				getAriaLabel: item => {
 					const label = item.label ?? '';
 					return item.item?.unavailable
-						? localize('branchPicker.unavailableAriaLabel', "{0}, unavailable locally", label)
+						? localize('sater.sessions.branchPicker.unavailableAriaLabel', "{0}, unavailable locally", label)
 						: label;
 				},
-				getWidgetAriaLabel: () => localize('branchPicker.ariaLabel', "Branch Picker"),
+				getWidgetAriaLabel: () => localize('sater.sessions.branchPicker.ariaLabel', "Branch Picker"),
 			},
 			branchCount > FILTER_THRESHOLD
-				? { showFilter: true, filterPlaceholder: localize('branchPicker.filter', "Filter branches…") }
+				? { showFilter: true, filterPlaceholder: localize('sater.sessions.branchPicker.filter', "Filter branches…") }
 				: undefined,
 		);
 	}
@@ -257,14 +257,14 @@ export class BranchPicker extends Disposable {
 			case 'loading':
 				return [{
 					kind: ActionListItemKind.Action,
-					label: localize('branchPicker.loading', "Loading branches…"),
+					label: localize('sater.sessions.branchPicker.loading', "Loading branches…"),
 					disabled: true,
 					item: { kind: 'branch' },
 				}];
 			case 'error':
 				return [{
 					kind: ActionListItemKind.Action,
-					label: localize('branchPicker.retry', "Retry Loading Branches"),
+					label: localize('sater.sessions.branchPicker.retry', "Retry Loading Branches"),
 					group: { title: '', icon: Codicon.refresh },
 					disabled: !this._options.onRetry,
 					item: { kind: 'retry' },
@@ -272,7 +272,7 @@ export class BranchPicker extends Disposable {
 			case 'empty':
 				return [{
 					kind: ActionListItemKind.Action,
-					label: localize('branchPicker.empty', "No local branches"),
+					label: localize('sater.sessions.branchPicker.empty', "No local branches"),
 					disabled: true,
 					item: { kind: 'branch' },
 				}];
@@ -280,7 +280,7 @@ export class BranchPicker extends Disposable {
 				return this._state.branches.map(branch => ({
 					kind: ActionListItemKind.Action,
 					label: branch.name,
-					detail: branch.unavailable ? localize('branchPicker.unavailable', "Unavailable locally") : undefined,
+					detail: branch.unavailable ? localize('sater.sessions.branchPicker.unavailable', "Unavailable locally") : undefined,
 					group: { title: '', icon: branch.unavailable ? Codicon.warning : Codicon.gitBranch },
 					item: {
 						kind: 'branch',
@@ -314,8 +314,8 @@ export class BranchPicker extends Disposable {
 		const renderAsStatic = disabled && this._options.renderDisabledAsStatic === true;
 		const reason = this._state.disabledReason;
 		this._triggerElement.setAttribute('aria-label', disabled && reason
-			? localize('branchPicker.disabledAriaLabel', "{0}. {1}", this._state.label, reason)
-			: localize('branchPicker.triggerAriaLabel', "Pick Branch, {0}", this._state.label));
+			? localize('sater.sessions.branchPicker.disabledAriaLabel', "{0}. {1}", this._state.label, reason)
+			: localize('sater.sessions.branchPicker.triggerAriaLabel', "Pick Branch, {0}", this._state.label));
 		this._triggerElement.setAttribute('aria-disabled', String(disabled));
 		this._triggerElement.setAttribute('aria-busy', String(this._state.status === 'loading'));
 		this._triggerElement.tabIndex = !disabled || this._options.keepDisabledFocusable && !renderAsStatic ? 0 : -1;

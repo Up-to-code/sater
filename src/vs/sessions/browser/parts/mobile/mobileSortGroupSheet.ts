@@ -91,7 +91,7 @@ export function showMobileSortGroupSheet(
 		const header = DOM.append(sheet, $('div.mobile-sort-group-sheet-header'));
 		DOM.append(header, $('div.mobile-sort-group-sheet-title')).textContent = title;
 		const closeBtn = DOM.append(header, $('button.mobile-sort-group-sheet-close', { type: 'button' })) as HTMLButtonElement;
-		closeBtn.setAttribute('aria-label', localize('sortGroupSheet.close', "Close"));
+		closeBtn.setAttribute('aria-label', localize('sater.sessions.mobile.sortGroupSheet.close', "Close"));
 		DOM.append(closeBtn, $('span')).classList.add(...ThemeIcon.asClassNameArray(Codicon.close));
 		const closeGesture = Gesture.addTarget(closeBtn);
 		disposables.push(() => closeGesture.dispose());

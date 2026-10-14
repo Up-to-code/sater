@@ -149,9 +149,9 @@ export class ViewQuickAccessProvider extends PickerQuickAccessProvider<IViewQuic
 		};
 
 		// Viewlets / Panels
-		addPaneComposites(ViewContainerLocation.Sidebar, localize('views', "Side Bar"));
-		addPaneComposites(ViewContainerLocation.Panel, localize('panels', "Panel"));
-		addPaneComposites(ViewContainerLocation.AuxiliaryBar, localize('secondary side bar', "Secondary Side Bar"));
+		addPaneComposites(ViewContainerLocation.Sidebar, localize('sater.quickAccess.sidebar', "Side Bar"));
+		addPaneComposites(ViewContainerLocation.Panel, localize('sater.quickAccess.panel', "Panel"));
+		addPaneComposites(ViewContainerLocation.AuxiliaryBar, localize('sater.quickAccess.auxiliaryBar', "Secondary Side Bar"));
 
 		const addPaneCompositeViews = (location: ViewContainerLocation) => {
 			const paneComposites = this.paneCompositeService.getPaneComposites(location);
@@ -174,7 +174,7 @@ export class ViewQuickAccessProvider extends PickerQuickAccessProvider<IViewQuic
 				const label = localize('terminalTitle', "{0}: {1}", `${groupIndex + 1}.${terminalIndex + 1}`, terminal.title);
 				viewEntries.push({
 					label,
-					containerLabel: localize('terminals', "Terminal"),
+				containerLabel: localize('sater.quickAccess.terminal', "Terminal"),
 					accept: async () => {
 						await this.terminalGroupService.showPanel(true);
 						this.terminalService.setActiveInstance(terminal);
@@ -188,7 +188,7 @@ export class ViewQuickAccessProvider extends PickerQuickAccessProvider<IViewQuic
 			const label = session.name;
 			viewEntries.push({
 				label,
-				containerLabel: localize('debugConsoles', "Debug Console"),
+				containerLabel: localize('sater.quickAccess.debugConsole', "Debug Console"),
 				accept: async () => {
 					await this.debugService.focusStackFrame(undefined, undefined, session, { explicit: true });
 
@@ -205,7 +205,7 @@ export class ViewQuickAccessProvider extends PickerQuickAccessProvider<IViewQuic
 		for (const channel of channels) {
 			viewEntries.push({
 				label: channel.label,
-				containerLabel: localize('channels', "Output"),
+				containerLabel: localize('sater.quickAccess.output', "Output"),
 				accept: () => this.outputService.showChannel(channel.id)
 			});
 		}

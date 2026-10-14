@@ -357,11 +357,11 @@ class SessionsSetUpWidget extends Disposable {
 		const dialog = disposables.add(new Dialog(
 			this.layoutService.activeContainer,
 			'',
-			[localize('sessions.aiDisabled.enable', "Enable AI Features")],
+			[localize('sater.sessions.aiDisabled.enable', "Enable AI Features")],
 			createWorkbenchDialogOptions({
 				type: 'none',
 				extraClasses: ['chat-setup-dialog', 'sessions-welcome-dialog'],
-				detail: localize('sessions.aiDisabled.detail', "Enable AI features to continue using Agents."),
+				detail: localize('sater.sessions.aiDisabled.detail', "Enable AI features to continue using Agents."),
 				icon: Codicon.agent,
 				alignment: DialogContentsAlignment.Vertical,
 				cancelId: 1,
@@ -456,7 +456,7 @@ class SessionsSetUpWidget extends Disposable {
 		const overlay = append(this.layoutService.mainContainer, $('div.sessions-loading-overlay'));
 		overlay.setAttribute('role', 'status');
 		overlay.setAttribute('aria-busy', 'true');
-		overlay.setAttribute('aria-label', localize('loading', "Loading"));
+		overlay.setAttribute('aria-label', localize('sater.sessions.loading', "Loading"));
 		append(overlay, $('div.sessions-loading-icon.codicon.codicon-agent'));
 		return { element: overlay, dispose: () => overlay.remove() };
 	}
@@ -530,16 +530,16 @@ class SessionsSetUpWidget extends Disposable {
 		this.logService.info('[sessions welcome] Showing welcome dialog');
 
 		const disposables = new DisposableStore();
-		const productName = localize('walkthrough.productName', "{0} - Agents", this.productService.nameLong);
+		const productName = localize('sater.sessions.productName', "{0} - Agents", this.productService.nameLong);
 
 		const dialog = disposables.add(new Dialog(
 			this.layoutService.activeContainer,
-			localize('sessions.welcome.title', "Welcome to {0}", productName),
-			[localize('sessions.welcome.getStarted', "Get Started")],
+			localize('sater.sessions.welcome.title', "Welcome to {0}", productName),
+			[localize('sater.sessions.welcome.getStarted', "Get Started")],
 			createWorkbenchDialogOptions({
 				type: 'none',
 				extraClasses: ['chat-setup-dialog', 'sessions-welcome-dialog', 'sessions-main-welcome-dialog'],
-				detail: localize('sessions.welcome.detail', "Your AI-powered coding experience where agents explore, build, and iterate with you."),
+				detail: localize('sater.sessions.welcome.detail', "Your AI-powered coding experience where agents explore, build, and iterate with you."),
 				icon: Codicon.agent,
 				alignment: DialogContentsAlignment.Vertical,
 				cancelId: 1,
@@ -565,7 +565,7 @@ class SessionsSetUpWidget extends Disposable {
 		const settingsUrl = this.defaultAccountService.resolveGitHubUrl(GitHubPaths.copilotSettings);
 
 		const footer = localize(
-			{ key: 'welcomeFooter', comment: ['{Locked="["}', '{Locked="]({1})"}', '{Locked="]({2})"}', '{Locked="]({4})"}', '{Locked="]({5})"}'] },
+			{ key: 'sater.sessions.welcomeFooter', comment: ['{Locked="["}', '{Locked="]({1})"}', '{Locked="]({2})"}', '{Locked="]({4})"}', '{Locked="]({5})"}'] },
 			"By continuing, you agree to {0}'s [Terms]({1}) and [Privacy Statement]({2}). {3} Copilot may show [public code]({4}) suggestions and use your data to improve the product. You can change these [settings]({5}) anytime.",
 			providerName, termsUrl, privacyUrl, providerName, publicCodeUrl, settingsUrl
 		);

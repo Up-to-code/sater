@@ -153,7 +153,7 @@ export class ChatCompositeBar extends Disposable {
 
 		this._tabsContainer = $('.chat-composite-bar-tabs');
 		this._tabsContainer.setAttribute('role', 'tablist');
-		this._tabsContainer.setAttribute('aria-label', localize('chatTabsAriaLabel', "Chats"));
+		this._tabsContainer.setAttribute('aria-label', localize('sater.chat.tabs.ariaLabel', "Chats"));
 		this._tabsScrollbar = this._register(new ScrollableElement(this._tabsContainer, {
 			horizontal: ScrollbarVisibility.Hidden,
 			vertical: ScrollbarVisibility.Hidden,
@@ -305,7 +305,7 @@ export class ChatCompositeBar extends Disposable {
 			const title = chat.title.read(reader);
 			const status = chat.status.read(reader);
 			labelEl.textContent = title;
-			tab.setAttribute('aria-label', localize('chatTabAriaLabel', "{0}, {1}", title, getSessionConversationStatusAriaLabel(status)));
+			tab.setAttribute('aria-label', localize('sater.chat.tab.ariaLabel', "{0}, {1}", title, getSessionConversationStatusAriaLabel(status)));
 		}));
 
 		// Lock icon shown for read-only (non-interactive) chats.
@@ -465,13 +465,13 @@ export class ChatCompositeBar extends Disposable {
 			this._delegate?.onTabDragEnd?.();
 		}));
 
-		const renameAction = this._tabDisposables.add(new Action('sessionCompositeBar.renameChat', localize('renameChat', "Rename"), undefined, true, async () => {
+		const renameAction = this._tabDisposables.add(new Action('sessionCompositeBar.renameChat', localize('sater.chat.rename', "Rename"), undefined, true, async () => {
 			this._startTabEditing(chatTab);
 		}));
 
 		// Delete permanently removes the chat (destructive). Only non-main chats
 		// can be deleted; the main chat lives and dies with its session.
-		const deleteAction = this._tabDisposables.add(new Action('sessionCompositeBar.deleteChat', localize('deleteChat', "Delete Chat"), undefined, true, async () => {
+		const deleteAction = this._tabDisposables.add(new Action('sessionCompositeBar.deleteChat', localize('sater.chat.delete', "Delete Chat"), undefined, true, async () => {
 			if (delegate) {
 				await this._sessionsManagementService.deleteChat(delegate.session, chat.resource);
 			}
@@ -555,7 +555,7 @@ export class ChatCompositeBar extends Disposable {
 		this._editingDisposables.value = store;
 
 		const inputBox = store.add(new InputBox(inputContainer, this._contextViewService, {
-			ariaLabel: localize('renameChat.aria', "Rename chat"),
+			ariaLabel: localize('sater.chat.renameAria', "Rename chat"),
 			inputBoxStyles: defaultInputBoxStyles,
 		}));
 		inputBox.element.classList.add('chat-composite-bar-tab-input');

@@ -75,15 +75,15 @@ export class MobileSessionFilterChips extends Disposable {
 
 	private static readonly CHIP_DEFS: readonly IFilterChipDef[] = [
 		{
-			label: localize('chipCompleted', "Completed"),
+			label: localize('sater.sessions.mobile.filter.completed', "Completed"),
 			statuses: [SessionStatus.Completed],
 		},
 		{
-			label: localize('chipInProgress', "In Progress"),
+			label: localize('sater.sessions.mobile.filter.inProgress', "In Progress"),
 			statuses: [SessionStatus.InProgress, SessionStatus.NeedsInput],
 		},
 		{
-			label: localize('chipFailed', "Failed"),
+			label: localize('sater.sessions.mobile.filter.failed', "Failed"),
 			statuses: [SessionStatus.Error],
 		},
 	];
@@ -96,7 +96,7 @@ export class MobileSessionFilterChips extends Disposable {
 
 		this.container = DOM.append(parent, $('.mobile-session-filter-chips'));
 		this.container.setAttribute('role', 'toolbar');
-		this.container.setAttribute('aria-label', localize('filterChipsLabel', "Session status filters"));
+		this.container.setAttribute('aria-label', localize('sater.sessions.mobile.filter.label', "Session status filters"));
 
 		this.scrollContainer = DOM.append(this.container, $('.mobile-session-filter-chips-scroll'));
 
@@ -163,13 +163,13 @@ export class MobileSessionFilterChips extends Disposable {
 		const chip = DOM.append(this.scrollContainer, $('.mobile-session-filter-chip.mobile-session-filter-chip-action'));
 		chip.setAttribute('role', 'button');
 		chip.setAttribute('tabindex', '0');
-		chip.setAttribute('aria-label', localize('sortGroupAriaLabel', "Sort and group options"));
+		chip.setAttribute('aria-label', localize('sater.sessions.mobile.filter.sortAria', "Sort and group options"));
 
 		const icon = DOM.append(chip, $('span.chip-icon'));
 		icon.classList.add(...ThemeIcon.asClassNameArray(Codicon.listFilter));
 
 		const label = DOM.append(chip, $('span.chip-label'));
-		label.textContent = localize('sortGroup', "Sort");
+		label.textContent = localize('sater.sessions.mobile.filter.sort', "Sort");
 
 		const fire = () => this._onDidRequestSortGroup.fire(chip);
 
@@ -194,7 +194,7 @@ export class MobileSessionFilterChips extends Disposable {
 		const chip = DOM.append(this.container, $('.mobile-session-filter-chip.mobile-session-filter-chip-action.icon-only'));
 		chip.setAttribute('role', 'button');
 		chip.setAttribute('tabindex', '0');
-		chip.setAttribute('aria-label', localize('findAriaLabel', "Find session"));
+		chip.setAttribute('aria-label', localize('sater.sessions.mobile.filter.findAria', "Find session"));
 
 		const icon = DOM.append(chip, $('span.chip-icon'));
 		icon.classList.add(...ThemeIcon.asClassNameArray(Codicon.search));

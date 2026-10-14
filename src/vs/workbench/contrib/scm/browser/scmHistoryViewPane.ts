@@ -1693,7 +1693,7 @@ export class SCMHistoryViewPane extends ViewPane {
 			h('div.scm-graph-view-badge.monaco-count-badge.long@badge')
 		]);
 
-		element.badge.textContent = 'Outdated';
+		element.badge.textContent = localize('sater.scm.history.outdated', 'Outdated');
 		container.appendChild(element.root);
 
 		this._register(autorun(reader => {

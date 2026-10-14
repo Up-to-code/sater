@@ -17,20 +17,20 @@ export function getSessionConversationActionId(sessionId: string, chatResource: 
 export function getSessionConversationStatusLabel(status: SessionStatus): string {
 	switch (status) {
 		case SessionStatus.Untitled:
-			return localize('sessionConversationStatus.new', "New");
+			return localize('sater.sessions.status.new', "New");
 		case SessionStatus.InProgress:
-			return localize('sessionConversationStatus.inProgress', "In Progress");
+			return localize('sater.sessions.status.inProgress', "In Progress");
 		case SessionStatus.NeedsInput:
-			return localize('sessionConversationStatus.needsInput', "Input Needed");
+			return localize('sater.sessions.status.needsInput', "Input Needed");
 		case SessionStatus.Completed:
-			return localize('sessionConversationStatus.completed', "Completed");
+			return localize('sater.sessions.status.completed', "Completed");
 		case SessionStatus.Error:
-			return localize('sessionConversationStatus.failed', "Failed");
+			return localize('sater.sessions.status.failed', "Failed");
 	}
 }
 
 export function getSessionConversationStatusAriaLabel(status: SessionStatus): string {
-	return localize('sessionConversationStatus.ariaLabel', "State: {0}", getSessionConversationStatusLabel(status));
+	return localize('sater.sessions.status.ariaLabel', "State: {0}", getSessionConversationStatusLabel(status));
 }
 
 /** Whether a chat belongs in the Side Chats menu. */

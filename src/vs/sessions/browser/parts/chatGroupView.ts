@@ -144,7 +144,7 @@ export class ChatGroupView extends Disposable implements ISerializableView {
 		if (count <= 1) {
 			this.element.removeAttribute('role');
 			this.element.removeAttribute('aria-label');
-			this._compositeBar.setAriaLabel(localize('chatTabsAriaLabel', "Chats"));
+			this._compositeBar.setAriaLabel(localize('sater.agents.chats', "Chats"));
 			return;
 		}
 

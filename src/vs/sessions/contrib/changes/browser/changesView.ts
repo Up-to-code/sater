@@ -828,7 +828,7 @@ export class ChangesViewPane extends ViewPane {
 		this.welcomeContainer.style.display = 'none';
 
 		const welcomeMessage = dom.append(this.welcomeContainer, $('.changes-welcome-message'));
-		welcomeMessage.textContent = localize('changesView.noChanges', "Changed files and other session artifacts will appear here.");
+		welcomeMessage.textContent = localize('sater.sessions.changes.noChanges', "Changed files and other session artifacts will appear here.");
 
 		// CI Status widget — bottom pane
 		this.ciStatusWidget = this._register(this.scopedInstantiationService.createInstance(CIStatusWidget, this.splitViewContainer));
@@ -1434,7 +1434,7 @@ export class ChangesViewPane extends ViewPane {
 		// "Changes" header
 		const headerNode = dom.append(container, $('.changes-sidebar-header'));
 		const headerLabel = dom.append(headerNode, $('span'));
-		headerLabel.textContent = localize('changes', "Changes");
+		headerLabel.textContent = localize('sater.sessions.changes.title', "Changes");
 		const countBadge = disposables.add(new CountBadge(headerNode, { count: items.length }, defaultCountBadgeStyles));
 		countBadge.setCount(items.length);
 

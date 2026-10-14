@@ -481,12 +481,12 @@ export class ActivityBarCompositeBar extends PaneCompositeBar {
 		// Menu
 		const menuBarVisibility = getMenuBarVisibility(this.configurationService);
 		if (menuBarVisibility === 'compact' || menuBarVisibility === 'hidden' || menuBarVisibility === 'toggle') {
-			actions.unshift(...[toAction({ id: 'toggleMenuVisibility', label: localize('menu', "Menu"), checked: menuBarVisibility === 'compact', run: () => this.configurationService.updateValue(MenuSettings.MenuBarVisibility, menuBarVisibility === 'compact' ? 'toggle' : 'compact') }), new Separator()]);
+			actions.unshift(...[toAction({ id: 'toggleMenuVisibility', label: localize('sater.activity.menu', "Menu"), checked: menuBarVisibility === 'compact', run: () => this.configurationService.updateValue(MenuSettings.MenuBarVisibility, menuBarVisibility === 'compact' ? 'toggle' : 'compact') }), new Separator()]);
 		}
 
 		if (menuBarVisibility === 'compact' && this.menuBarContainer && e?.target) {
 			if (isAncestor(e.target as Node, this.menuBarContainer)) {
-				actions.unshift(...[toAction({ id: 'hideCompactMenu', label: localize('hideMenu', "Hide Menu"), run: () => this.configurationService.updateValue(MenuSettings.MenuBarVisibility, 'toggle') }), new Separator()]);
+				actions.unshift(...[toAction({ id: 'hideCompactMenu', label: localize('sater.activity.hideMenu', "Hide Menu"), run: () => this.configurationService.updateValue(MenuSettings.MenuBarVisibility, 'toggle') }), new Separator()]);
 			}
 		}
 
@@ -606,7 +606,7 @@ export class ActivityBarCompositeBar extends PaneCompositeBar {
 		const activityBarPositionMenu = this.menuService.getMenuActions(MenuId.ActivityBarPositionMenu, this.contextKeyService, { shouldForwardArgs: true, renderShortTitle: true });
 		const positionActions = getContextMenuActions(activityBarPositionMenu).secondary;
 		const actions: IAction[] = [
-			new SubmenuAction('workbench.action.activityBar.position', localize('activity bar position', "Activity Bar Position"), positionActions),
+			new SubmenuAction('workbench.action.activityBar.position', localize('sater.activity.position', "Activity Bar Position"), positionActions),
 		];
 
 		// Show size submenu only when activity bar is in default position
@@ -614,8 +614,8 @@ export class ActivityBarCompositeBar extends PaneCompositeBar {
 		if (activityBarPosition === ActivityBarPosition.DEFAULT) {
 			const isCompact = this.configurationService.getValue<boolean>(LayoutSettings.ACTIVITY_BAR_COMPACT) ?? false;
 			const sizeActions = [
-				toAction({ id: 'workbench.action.activityBar.size.default', label: localize('activityBarSizeDefault', "Default"), checked: !isCompact, run: () => this.configurationService.updateValue(LayoutSettings.ACTIVITY_BAR_COMPACT, false) }),
-				toAction({ id: 'workbench.action.activityBar.size.compact', label: localize('activityBarSizeCompact', "Compact"), checked: isCompact, run: () => this.configurationService.updateValue(LayoutSettings.ACTIVITY_BAR_COMPACT, true) }),
+				toAction({ id: 'workbench.action.activityBar.size.default', label: localize('sater.activity.sizeDefault', "Default"), checked: !isCompact, run: () => this.configurationService.updateValue(LayoutSettings.ACTIVITY_BAR_COMPACT, false) }),
+				toAction({ id: 'workbench.action.activityBar.size.compact', label: localize('sater.activity.sizeCompact', "Compact"), checked: isCompact, run: () => this.configurationService.updateValue(LayoutSettings.ACTIVITY_BAR_COMPACT, true) }),
 			];
 			actions.push(new SubmenuAction('workbench.action.activityBar.size', localize('activity bar size', "Activity Bar Size"), sizeActions));
 		}

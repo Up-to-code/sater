@@ -26,13 +26,13 @@ export function createSessionsSignInDialogOptions(
 	return {
 		forceSignInDialog: true,
 		dialogIcon: Codicon.agent,
-		dialogTitle: localize('sessions.signIn', "Sign in to use Agents"),
+		dialogTitle: localize('sater.sessions.signIn', "Sign in to use Agents"),
 		disableCloseButton: !allowContinueWithoutSignIn,
 		dialogExtraClasses: ['sessions-welcome-dialog'],
 		allowContinueWithoutSignIn,
 		renderDialogFooter: showReturnToVSCodeEditor ? (footer: HTMLElement) => createDialogAction(
 			footer,
-			localize('sessions.returnToVSCodeEditor', "Return to VS Code Editor"),
+			localize('sater.sessions.returnToVSCodeEditor', "Return to VS Code Editor"),
 			() => {
 				void commandService.executeCommand<void>(RETURN_TO_VSCODE_EDITOR_COMMAND_ID).catch(onUnexpectedError);
 			}
@@ -57,13 +57,13 @@ export class SessionsSigningInDialog extends Disposable {
 
 		this.dialog = this._register(new Dialog(
 			layoutService.activeContainer,
-			localize('sessions.signingIn', "Signing in…"),
+			localize('sater.sessions.signingIn', "Signing in…"),
 			[],
 			createWorkbenchDialogOptions({
 				type: 'none',
 				extraClasses: ['chat-setup-dialog', 'sessions-welcome-dialog'],
 				modalBlockExtraClasses: ['sessions-signing-in-dialog-modal-block'],
-				detail: localize('sessions.signingIn.detail', "Please complete sign-in in the browser."),
+				detail: localize('sater.sessions.signingIn.detail', "Please complete sign-in in the browser."),
 				icon: Codicon.agent,
 				alignment: DialogContentsAlignment.Vertical,
 				cancelId: 0,

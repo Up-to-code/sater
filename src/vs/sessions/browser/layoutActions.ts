@@ -32,14 +32,14 @@ class ToggleSidebarVisibilityAction extends Action2 {
 	constructor() {
 		super({
 			id: ToggleSidebarVisibilityAction.ID,
-			title: localize2('toggleSidebar', 'Toggle Side Bar'),
+			title: localize2('sater.sessions.layout.toggleSidebar', 'Toggle Side Bar'),
 			icon: sidebarToggleClosedIcon,
 			toggled: {
 				condition: SideBarVisibleContext,
 				icon: sidebarToggleOpenIcon,
 			},
 			metadata: {
-				description: localize('openAndCloseSidebar', 'Open/Show and Close/Hide Sidebar'),
+				description: localize('sater.sessions.layout.openAndCloseSidebar', 'Open/Show and Close/Hide Sidebar'),
 			},
 			category: Categories.View,
 			f1: true,
@@ -66,8 +66,8 @@ class ToggleSidebarVisibilityAction extends Action2 {
 
 		// Announce visibility change to screen readers
 		const alertMessage = isCurrentlyVisible
-			? localize('sidebarHidden', "Primary Side Bar hidden")
-			: localize('sidebarVisible', "Primary Side Bar shown");
+			? localize('sater.sessions.layout.sidebarHidden', "Primary Side Bar hidden")
+			: localize('sater.sessions.layout.sidebarVisible', "Primary Side Bar shown");
 		alert(alertMessage);
 	}
 }
@@ -77,8 +77,8 @@ registerAction2(ToggleSidebarVisibilityAction);
 MenuRegistry.appendMenuItem(Menus.TitleBarAccessibility, {
 	command: {
 		id: 'editor.action.toggleScreenReaderAccessibilityMode',
-		title: localize('screenReaderOptimizedBadge', "Screen Reader Optimized"),
-		tooltip: localize('disableScreenReaderOptimizedMode', "Disable Screen Reader Optimized Mode"),
+		title: localize('sater.sessions.layout.screenReaderOptimizedBadge', "Screen Reader Optimized"),
+		tooltip: localize('sater.sessions.layout.disableScreenReaderOptimizedMode', "Disable Screen Reader Optimized Mode"),
 	},
 	group: 'navigation',
 	order: 0,
@@ -90,7 +90,7 @@ const titleBarPanelWhen = ContextKeyExpr.and(IsAuxiliaryWindowContext.toNegated(
 MenuRegistry.appendMenuItem(Menus.TitleBarSessionMenu, {
 	command: {
 		id: TogglePanelAction.ID,
-		title: localize('showPanel', "Show Panel"),
+		title: localize('sater.sessions.layout.showPanel', "Show Panel"),
 		icon: Codicon.layoutPanelOff,
 		precondition: CustomViewVisibleContext.negate()
 	},
@@ -102,7 +102,7 @@ MenuRegistry.appendMenuItem(Menus.TitleBarSessionMenu, {
 MenuRegistry.appendMenuItem(Menus.TitleBarSessionMenu, {
 	command: {
 		id: TogglePanelAction.ID,
-		title: localize('hidePanel', "Hide Panel"),
+		title: localize('sater.sessions.layout.hidePanel', "Hide Panel"),
 		icon: Codicon.layoutPanel,
 		precondition: CustomViewVisibleContext.negate()
 	},
@@ -126,7 +126,7 @@ const isSinglePaneDetailPanelDisabled = SinglePaneLayoutEnabledContext.negate();
 MenuRegistry.appendMenuItem(MenuId.EditorTitleLayout, {
 	command: {
 		id: 'workbench.action.toggleAuxiliaryBar',
-		title: localize('hideSecondarySideBar', "Hide Secondary Side Bar"),
+		title: localize('sater.sessions.layout.hideSecondarySideBar', "Hide Secondary Side Bar"),
 		icon: Codicon.rightPanelHide
 	},
 	group: 'navigation',
@@ -137,7 +137,7 @@ MenuRegistry.appendMenuItem(MenuId.EditorTitleLayout, {
 MenuRegistry.appendMenuItem(MenuId.EditorTitleLayout, {
 	command: {
 		id: 'workbench.action.toggleAuxiliaryBar',
-		title: localize('showSecondarySideBar', "Show Secondary Side Bar"),
+		title: localize('sater.sessions.layout.showSecondarySideBar', "Show Secondary Side Bar"),
 		icon: Codicon.rightPanelShow
 	},
 	group: 'navigation',
@@ -152,7 +152,7 @@ MenuRegistry.appendMenuItem(MenuId.EditorTitleLayout, {
 MenuRegistry.appendMenuItem(Menus.PanelTitle, {
 	command: {
 		id: 'workbench.action.closePanel',
-		title: localize('closePanel', "Hide Panel"),
+		title: localize('sater.sessions.layout.closePanel', "Hide Panel"),
 		icon: panelCloseIcon
 	},
 	group: 'navigation',
@@ -163,7 +163,7 @@ MenuRegistry.appendMenuItem(Menus.PanelTitle, {
 MenuRegistry.appendMenuItem(Menus.TitleBarRightLayout, {
 	command: {
 		id: 'workbench.action.toggleWindowAlwaysOnTop',
-		title: localize('toggleWindowAlwaysOnTop', "Toggle Always on Top"),
+		title: localize('sater.sessions.layout.toggleWindowAlwaysOnTop', "Toggle Always on Top"),
 		icon: Codicon.pin,
 		toggled: {
 			condition: IsWindowAlwaysOnTopContext,

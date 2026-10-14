@@ -180,16 +180,16 @@ export class PanelPart extends AbstractPaneCompositePart {
 		const panelShowLabels = this.configurationService.getValue<boolean | undefined>('workbench.panel.showLabels');
 		const toggleShowLabelsAction = toAction({
 			id: 'workbench.action.panel.toggleShowLabels',
-			label: panelShowLabels ? localize('showIcons', "Show Icons") : localize('showLabels', "Show Labels"),
+			label: panelShowLabels ? localize('sater.panel.showIcons', "Show Icons") : localize('sater.panel.showLabels', "Show Labels"),
 			run: () => this.configurationService.updateValue('workbench.panel.showLabels', !panelShowLabels)
 		});
 
 		actions.push(...[
 			new Separator(),
-			new SubmenuAction('workbench.action.panel.position', localize('panel position', "Panel Position"), positionActions),
-			new SubmenuAction('workbench.action.panel.align', localize('align panel', "Align Panel"), alignActions),
+			new SubmenuAction('workbench.action.panel.position', localize('sater.panel.position', "Panel Position"), positionActions),
+			new SubmenuAction('workbench.action.panel.align', localize('sater.panel.align', "Align Panel"), alignActions),
 			toggleShowLabelsAction,
-			toAction({ id: TogglePanelAction.ID, label: localize('hidePanel', "Hide Panel"), run: () => this.commandService.executeCommand(TogglePanelAction.ID) }),
+			toAction({ id: TogglePanelAction.ID, label: localize('sater.panel.hide', "Hide Panel"), run: () => this.commandService.executeCommand(TogglePanelAction.ID) }),
 		]);
 	}
 

@@ -56,7 +56,7 @@ function buildDebugArtifactSections(debugData: ISessionChatPillsDebugData): read
 		const resource = URI.from({ scheme: 'session-chat-pills-debug', path: `/${name}` });
 		return { id: name, label: name, resource, ...sessionArtifactLocation(resource.path, name), open: () => { } };
 	});
-	return entries.length ? [{ title: localize('sessionArtifacts.files', "Files"), entries }] : [];
+	return entries.length ? [{ title: localize('sater.chat.pills.files', "Files"), entries }] : [];
 }
 
 /** Action ids of the pills the sessions toolbar hosts itself. */
@@ -231,10 +231,10 @@ export class SessionChatInputToolbar extends Disposable {
 		// after the artifacts pill: the two read as a pair, what the session made
 		// and what it points at.
 		const sectionPills: readonly { readonly pill: IObservable<IChatPill>; readonly sections: IObservable<readonly IChatPillSection[]> }[] = [
-			{ pill: sectionPill(SESSION_REFERENCES_PILL_ID, localize('sessionChatPills.references', "References"), references.sections, sessionReferencesPillOptions), sections: references.sections },
-			{ pill: sectionPill(SESSION_CUSTOMIZATIONS_PILL_ID, localize('sessionChatPills.customizations', "Customizations"), customizations.sections, chatCustomizationPillOptions), sections: customizations.sections },
-			{ pill: sectionPill(SESSION_BROWSERS_PILL_ID, localize('sessionChatPills.browsers', "Browsers"), this._browsers.sections, sessionBrowsersPillOptions), sections: this._browsers.sections },
-			{ pill: sectionPill(SESSION_SUBAGENTS_PILL_ID, localize('sessionChatPills.subagents', "Subagents"), this._backgroundActivities.sections, sessionSubagentsPillOptions), sections: this._backgroundActivities.sections },
+			{ pill: sectionPill(SESSION_REFERENCES_PILL_ID, localize('sater.chat.pills.references', "References"), references.sections, sessionReferencesPillOptions), sections: references.sections },
+			{ pill: sectionPill(SESSION_CUSTOMIZATIONS_PILL_ID, localize('sater.chat.pills.customizations', "Customizations"), customizations.sections, chatCustomizationPillOptions), sections: customizations.sections },
+			{ pill: sectionPill(SESSION_BROWSERS_PILL_ID, localize('sater.chat.pills.browsers', "Browsers"), this._browsers.sections, sessionBrowsersPillOptions), sections: this._browsers.sections },
+			{ pill: sectionPill(SESSION_SUBAGENTS_PILL_ID, localize('sater.chat.pills.subagents', "Subagents"), this._backgroundActivities.sections, sessionSubagentsPillOptions), sections: this._backgroundActivities.sections },
 		];
 
 		const pillsModel: IChatPillsModel = {

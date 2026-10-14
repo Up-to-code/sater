@@ -986,7 +986,7 @@ class InputWithButton implements IDisposable {
 		this._sparkleIcon ??= renderIcon(Codicon.sparkle);
 		dom.clearNode(this.button);
 		this.button.appendChild(this._sparkleIcon);
-		this.button.setAttribute('aria-label', 'Generating new name suggestions');
+		this.button.setAttribute('aria-label', nls.localize('sater.editor.rename.generatingSuggestions', 'Generating new name suggestions'));
 		this._buttonHoverContent = this._buttonGenHoverText!;
 		this.input.focus();
 	}
@@ -996,7 +996,7 @@ class InputWithButton implements IDisposable {
 		this._stopIcon ??= renderIcon(Codicon.stopCircle);
 		dom.clearNode(this.button);
 		this.button.appendChild(this._stopIcon);
-		this.button.setAttribute('aria-label', 'Cancel generating new name suggestions');
+		this.button.setAttribute('aria-label', nls.localize('sater.editor.rename.cancelSuggestions', 'Cancel generating new name suggestions'));
 		this._buttonHoverContent = this._buttonCancelHoverText!;
 		this.input.focus();
 	}

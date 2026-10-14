@@ -133,8 +133,8 @@ export function getAccountTitleBarState(context: IAccountTitleBarStateContext): 
 			source: 'account',
 			kind: 'default',
 			icon: ThemeIcon.modify(Codicon.loading, 'spin'),
-			label: localize('loadingAccount', "Loading Account..."),
-			ariaLabel: localize('loadingAccountAria', "Loading account"),
+			label: localize('sater.sessions.loadingAccount', "Loading Account..."),
+			ariaLabel: localize('sater.sessions.loadingAccountAria', "Loading account"),
 			revealLabelOnHover: true,
 		};
 	}
@@ -152,8 +152,8 @@ export function getAccountTitleBarState(context: IAccountTitleBarStateContext): 
 			label: context.accountName,
 			revealLabelOnHover: true,
 			ariaLabel: context.accountProviderLabel
-				? localize('accountSignedInAria', "Signed in as {0} with {1}", context.accountName, context.accountProviderLabel)
-				: localize('accountSignedInAriaNameOnly', "Signed in as {0}", context.accountName),
+				? localize('sater.sessions.accountSignedInAria', "Signed in as {0} with {1}", context.accountName, context.accountProviderLabel)
+				: localize('sater.sessions.accountSignedInAriaNameOnly', "Signed in as {0}", context.accountName),
 		};
 	}
 
@@ -161,8 +161,8 @@ export function getAccountTitleBarState(context: IAccountTitleBarStateContext): 
 		source: 'account',
 		kind: 'prominent',
 		icon: Codicon.account,
-		label: localize('signInLabel', "Sign In"),
-		ariaLabel: localize('signInAria', "Sign in to your account"),
+		label: localize('sater.sessions.signInLabel', "Sign In"),
+		ariaLabel: localize('sater.sessions.signInAria', "Sign in to your account"),
 	};
 }
 
@@ -183,16 +183,16 @@ function getCopilotPresentation(
 				source: 'copilot',
 				kind: 'default',
 				icon: Codicon.account,
-				label: localize('agentsSignInOptional', "Sign In"),
-				ariaLabel: localize('agentsSignInOptionalAria', "Sign in to GitHub to use more agents"),
+				label: localize('sater.agents.signInOptional', "Sign In"),
+				ariaLabel: localize('sater.agents.signInOptionalAria', "Sign in to GitHub to use more agents"),
 			};
 		}
 		return {
 			source: 'copilot',
 			kind: 'prominent',
 			icon: Codicon.account,
-			label: localize('agentsSignedOut', "Agents Signed Out"),
-			ariaLabel: localize('agentsSignedOutAria', "Agents is signed out"),
+			label: localize('sater.agents.signedOut', "Agents Signed Out"),
+			ariaLabel: localize('sater.agents.signedOutAria', "Agents is signed out"),
 		};
 	}
 
@@ -201,10 +201,10 @@ function getCopilotPresentation(
 			source: 'copilot',
 			kind: 'warning',
 			icon: Codicon.account,
-			label: localize('copilotUnavailable', "Copilot Unavailable"),
+			label: localize('sater.agents.copilotUnavailable', "Copilot Unavailable"),
 			ariaLabel: sentiment.untrusted
-				? localize('copilotUnavailableUntrustedAria', "GitHub Copilot is unavailable in untrusted workspaces")
-				: localize('copilotUnavailableDisabledAria', "GitHub Copilot is disabled"),
+				? localize('sater.agents.copilotUnavailableUntrustedAria', "GitHub Copilot is unavailable in untrusted workspaces")
+				: localize('sater.agents.copilotUnavailableDisabledAria', "GitHub Copilot is disabled"),
 		};
 	}
 
@@ -215,7 +215,7 @@ function getCopilotPresentation(
 			source: 'copilot',
 			kind: 'warning',
 			icon: Codicon.account,
-			label: localize('copilotQuotaReached', "Quota Reached"),
+			label: localize('sater.agents.copilotQuotaReached', "Quota Reached"),
 			dotBadge: 'error',
 			ariaLabel: getQuotaReachedAriaLabel(chatQuotaExceeded, completionsQuotaExceeded),
 		};
@@ -227,10 +227,10 @@ function getCopilotPresentation(
 			source: 'copilot',
 			kind: remainingPercent <= 10 ? 'warning' : 'accent',
 			icon: Codicon.account,
-			label: localize('copilotTokensRemaining', "Tokens Remaining"),
+			label: localize('sater.agents.copilotTokensRemaining', "Tokens Remaining"),
 			badge: `${remainingPercent}%`,
 			dotBadge: remainingPercent <= 10 ? 'error' : 'warning',
-			ariaLabel: localize('copilotTokensRemainingAria', "{0}% GitHub Copilot tokens remaining", remainingPercent),
+			ariaLabel: localize('sater.agents.copilotTokensRemainingAria', "{0}% GitHub Copilot tokens remaining", remainingPercent),
 		};
 	}
 
@@ -254,12 +254,12 @@ function getLowestPositivePercent(...quotas: Array<IQuotaSnapshot | undefined>):
 
 function getQuotaReachedAriaLabel(chatQuotaExceeded: boolean, completionsQuotaExceeded: boolean): string {
 	if (chatQuotaExceeded && completionsQuotaExceeded) {
-		return localize('copilotAllQuotaReachedAria', "GitHub Copilot chat and inline suggestion quota reached");
+		return localize('sater.agents.copilotAllQuotaReachedAria', "GitHub Copilot chat and inline suggestion quota reached");
 	}
 
 	if (chatQuotaExceeded) {
-		return localize('copilotChatQuotaReachedAria', "GitHub Copilot chat quota reached");
+		return localize('sater.agents.copilotChatQuotaReachedAria', "GitHub Copilot chat quota reached");
 	}
 
-	return localize('copilotCompletionsQuotaReachedAria', "GitHub Copilot inline suggestion quota reached");
+	return localize('sater.agents.copilotCompletionsQuotaReachedAria', "GitHub Copilot inline suggestion quota reached");
 }

@@ -35,14 +35,14 @@ export const SESSION_CHAT_PILL_KINDS: readonly SessionChatPillKind[] = [
 
 export function getSessionChatPillLabel(kind: SessionChatPillKind): string {
 	switch (kind) {
-		case SessionChatPillKind.Changes: return localize('sessionChatPills.changes', "Changes");
-		case SessionChatPillKind.Artifacts: return localize('sessionChatPills.artifacts', "Artifacts");
-		case SessionChatPillKind.References: return localize('sessionChatPills.references', "References");
-		case SessionChatPillKind.Customizations: return localize('sessionChatPills.customizations', "Customizations");
-		case SessionChatPillKind.PullRequests: return localize('sessionChatPills.pullRequests', "Pull Requests");
-		case SessionChatPillKind.Issues: return localize('sessionChatPills.issues', "Issues");
-		case SessionChatPillKind.Browsers: return localize('sessionChatPills.browsers', "Browsers");
-		case SessionChatPillKind.Subagents: return localize('sessionChatPills.subagents', "Subagents");
+		case SessionChatPillKind.Changes: return localize('sater.chat.pills.changes', "Changes");
+		case SessionChatPillKind.Artifacts: return localize('sater.chat.pills.artifacts', "Artifacts");
+		case SessionChatPillKind.References: return localize('sater.chat.pills.references', "References");
+		case SessionChatPillKind.Customizations: return localize('sater.chat.pills.customizations', "Customizations");
+		case SessionChatPillKind.PullRequests: return localize('sater.chat.pills.pullRequests', "Pull Requests");
+		case SessionChatPillKind.Issues: return localize('sater.chat.pills.issues', "Issues");
+		case SessionChatPillKind.Browsers: return localize('sater.chat.pills.browsers', "Browsers");
+		case SessionChatPillKind.Subagents: return localize('sater.chat.pills.subagents', "Subagents");
 	}
 }
 
@@ -99,7 +99,7 @@ export function getSessionChatPillMenu(
 	}
 
 	const hide = targetKind !== undefined && isSessionChatPillHideable(targetKind)
-		? { kind: targetKind, label: localize('sessionChatPills.hide', "Hide {0}", getSessionChatPillLabel(targetKind)) }
+		? { kind: targetKind, label: localize('sater.chat.pills.hide', "Hide {0}", getSessionChatPillLabel(targetKind)) }
 		: undefined;
 
 	return { ...(hide ? { hide } : {}), withData, withoutData };

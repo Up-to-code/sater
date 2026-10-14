@@ -125,3 +125,21 @@
 	min-height: 44px;
 	padding: 8px 12px;
 }
+
+/* The phone sidebar is the same navigation surface as desktop, so its drawer
+ * must enter from the interface's navigation edge. The default LTR motion
+ * enters from the left; Arabic places the rail on the right and reverses only
+ * this chrome transition. */
+.sater-interface-rtl .agent-sessions-workbench.phone-layout .split-view-view:has(> .part.sidebar) {
+	direction: rtl;
+}
+
+@starting-style {
+	.sater-interface-rtl .agent-sessions-workbench.phone-layout .split-view-view.visible:has(> .part.sidebar) {
+		transform: translateX(100%);
+	}
+}
+
+.sater-interface-rtl .agent-sessions-workbench.phone-layout .split-view-view:not(.visible):has(> .part.sidebar) {
+	transform: translateX(100%);
+}

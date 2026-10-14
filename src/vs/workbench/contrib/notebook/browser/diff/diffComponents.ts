@@ -1391,7 +1391,7 @@ export class DeletedElement extends SingleSideDiffElement {
 			this._outputViewContainer = DOM.append(this._outputInfoContainer, DOM.$('.output-view-container'));
 			this._outputEmptyElement = DOM.append(this._outputViewContainer, DOM.$('.output-empty-view'));
 			const span = DOM.append(this._outputEmptyElement, DOM.$('span'));
-			span.innerText = 'No outputs to render';
+			span.innerText = localize('sater.notebook.diff.noOutputs', 'No outputs to render');
 
 			if (!this.cell.original?.outputs.length) {
 				this._outputEmptyElement.style.display = 'block';
@@ -1483,7 +1483,7 @@ export class InsertElement extends SingleSideDiffElement {
 		if (!this._outputViewContainer) {
 			this._outputViewContainer = DOM.append(this._outputInfoContainer, DOM.$('.output-view-container'));
 			this._outputEmptyElement = DOM.append(this._outputViewContainer, DOM.$('.output-empty-view'));
-			this._outputEmptyElement.innerText = 'No outputs to render';
+			this._outputEmptyElement.innerText = localize('sater.notebook.diff.noOutputs', 'No outputs to render');
 
 			if (!this.cell.modified?.outputs.length) {
 				this._outputEmptyElement.style.display = 'block';
@@ -1722,7 +1722,7 @@ export class ModifiedElement extends AbstractElementRenderer {
 		if (!this._outputViewContainer) {
 			this._outputViewContainer = DOM.append(this._outputInfoContainer, DOM.$('.output-view-container'));
 			this._outputEmptyElement = DOM.append(this._outputViewContainer, DOM.$('.output-empty-view'));
-			this._outputEmptyElement.innerText = 'No outputs to render';
+			this._outputEmptyElement.innerText = localize('sater.notebook.diff.noOutputs', 'No outputs to render');
 
 			if (!this.cell.checkIfOutputsModified() && this.cell.modified.outputs.length === 0) {
 				this._outputEmptyElement.style.display = 'block';

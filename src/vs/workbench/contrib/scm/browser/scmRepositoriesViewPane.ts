@@ -558,7 +558,7 @@ export class SCMRepositoriesViewPane extends ViewPane {
 
 		this.tree = this.instantiationService.createInstance(
 			WorkbenchCompressibleAsyncDataTree,
-			'SCM Repositories',
+			localize('sater.scm.repositories', 'Source Control Repositories'),
 			container,
 			new ListDelegate(),
 			new RepositoriesTreeCompressionDelegate(),

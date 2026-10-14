@@ -24,6 +24,7 @@ import { StandaloneColorPickerHover, StandaloneColorPickerParticipant, Standalon
 import * as dom from '../../../../../base/browser/dom.js';
 import { InsertButton } from '../colorPickerParts/colorPickerInsertButton.js';
 import { IHoverService } from '../../../../../platform/hover/browser/hover.js';
+import { localize } from '../../../../../nls.js';
 
 class StandaloneColorPickerResult {
 	// The color picker result consists of: an array of color results and a boolean indicating if the color was found in the editor
@@ -220,7 +221,7 @@ export class StandaloneColorPickerWidget extends Disposable implements IContentW
 		// When found in the editor, highlight the selection in the editor
 		if (foundInEditor) {
 			if (enterButton) {
-				enterButton.button.textContent = 'Replace';
+				enterButton.button.textContent = localize('sater.editor.colorPicker.replace', 'Replace');
 			}
 			this._selectionSetInEditor = true;
 			this._editor.setSelection(colorHover.range);

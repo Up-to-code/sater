@@ -90,7 +90,7 @@ registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: AGENTIC_SIGN_IN_COMMAND_ID,
-			title: localize2('signIn', "Sign in to use GitHub Copilot"),
+			title: localize2('sater.sessions.account.signIn', "Sign in to use GitHub Copilot"),
 			icon: Codicon.signIn,
 			menu: {
 				id: AccountMenu,
@@ -110,7 +110,7 @@ registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: 'workbench.action.agenticSignOut',
-			title: localize2('signOut', 'Sign Out'),
+			title: localize2('sater.sessions.account.signOut', 'Sign Out'),
 			icon: Codicon.signOut,
 			menu: {
 				id: AccountMenu,
@@ -135,9 +135,9 @@ registerAction2(class extends Action2 {
 		const accountLabel = defaultAccount.accountName;
 		const { confirmed } = await dialogService.confirm({
 			type: Severity.Info,
-			message: localize('agenticSignOutMessage', "Sign out of the Agents window?"),
-			detail: localize('agenticSignOutDetail', "This will sign out '{0}' from the Agents window.", accountLabel),
-			primaryButton: localize({ key: 'agenticSignOutButton', comment: ['&& denotes a mnemonic'] }, "&&Sign Out")
+			message: localize('sater.sessions.account.signOutMessage', "Sign out of the Agents window?"),
+			detail: localize('sater.sessions.account.signOutDetail', "This will sign out '{0}' from the Agents window.", accountLabel),
+			primaryButton: localize({ key: 'sater.sessions.account.signOutButton', comment: ['&& denotes a mnemonic'] }, "&&Sign Out")
 		});
 
 		if (!confirmed) {
@@ -156,7 +156,7 @@ registerAction2(class extends Action2 {
 MenuRegistry.appendMenuItem(AccountMenu, {
 	command: {
 		id: 'workbench.action.openSettings',
-		title: localize('settings', "Settings"),
+		title: localize('sater.sessions.account.settings', "Settings"),
 		icon: Codicon.settingsGear,
 	},
 	when: IsPhoneLayoutContext.negate(),
@@ -270,7 +270,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		container.setAttribute('role', 'button');
 		container.tabIndex = 0;
 
-		this.avatarElement = append(container, $('img.sessions-account-titlebar-widget-avatar', { alt: localize('accountAvatarAltFallback', "Account profile image"), draggable: 'false' })) as HTMLImageElement;
+		this.avatarElement = append(container, $('img.sessions-account-titlebar-widget-avatar', { alt: localize('sater.sessions.account.avatarAltFallback', "Account profile image"), draggable: 'false' })) as HTMLImageElement;
 		this.avatarElement.decoding = 'async';
 		this.avatarElement.referrerPolicy = 'no-referrer';
 		this.iconElement = append(container, $('.sessions-account-titlebar-widget-icon'));
@@ -367,16 +367,16 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 
 	private getAvatarAltText(hasLoadedAvatar: boolean): string {
 		if (hasLoadedAvatar && this.accountProviderId === 'github' && this.accountName) {
-			return localize('accountAvatarAlt', "GitHub profile image for {0}", this.accountName);
+			return localize('sater.sessions.account.avatarAlt', "GitHub profile image for {0}", this.accountName);
 		}
 
-		return localize('accountAvatarAltFallback', "Account profile image");
+		return localize('sater.sessions.account.avatarAltFallback', "Account profile image");
 	}
 
 	private getCodexAvatarAltText(): string {
 		return this.codexAccountService.account.email
-			? localize('chatGPTAvatarAlt', "ChatGPT profile image for {0}", this.codexAccountService.account.email)
-			: localize('chatGPTAvatarAltFallback', "ChatGPT profile image");
+			? localize('sater.sessions.account.chatGPTAvatarAlt', "ChatGPT profile image for {0}", this.codexAccountService.account.email)
+			: localize('sater.sessions.account.chatGPTAvatarAltFallback', "ChatGPT profile image");
 	}
 
 	private renderCodexPanelAvatar(): void {
@@ -576,7 +576,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		const identities = append(panel, $('.sessions-account-titlebar-panel-identities'));
 		if (this.accountName || this.isAccountLoading) {
 			const copilotAccount = append(identities, $('section.sessions-account-titlebar-panel-provider-account', {
-				'aria-label': localize('copilotAccountSectionLabel', "Copilot account")
+				'aria-label': localize('sater.sessions.account.copilotSection', "Copilot account")
 			}));
 			const copilotIdentity = append(copilotAccount, $('.sessions-account-titlebar-panel-provider-identity'));
 			const loadedAvatarUrl = !this.isAccountLoading ? this.loadedAvatarUrl : undefined;
@@ -602,14 +602,14 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			}));
 			copilotActionBar.push(panelStore.add(new Action(
 				'copilot.manageModels',
-				localize('manageCopilotModels', "Manage Copilot Models"),
+				localize('sater.sessions.account.manageCopilotModels', "Manage Copilot Models"),
 				ThemeIcon.asClassName(Codicon.copilot),
 				true,
 				() => this.commandService.executeCommand(MANAGE_CHAT_COMMAND_ID, '@provider:"Copilot"'),
 			)), { icon: true, label: false });
 			copilotActionBar.push(panelStore.add(new Action(
 				'copilot.openAgentCustomizations',
-				localize('openCopilotAgentCustomizations', "Agent Customizations for Copilot"),
+				localize('sater.sessions.account.openCopilotCustomizations', "Agent Customizations for Copilot"),
 				ThemeIcon.asClassName(Codicon.settingsGear),
 				true,
 				() => this.commandService.executeCommand(AICustomizationManagementCommands.OpenEditor, {
@@ -623,7 +623,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			this.appendCopilotUsage(copilotAccount, panelStore);
 		} else if (partitioned.signIn) {
 			const copilotAccount = append(identities, $('section.sessions-account-titlebar-panel-provider-account.signed-out', {
-				'aria-label': localize('copilotAccountSectionLabel', "Copilot account")
+				'aria-label': localize('sater.sessions.account.copilotSection', "Copilot account")
 			}));
 			const copilotIdentity = append(copilotAccount, $('.sessions-account-titlebar-panel-provider-identity'));
 			const accountIcon = append(copilotIdentity, $('span.sessions-account-titlebar-panel-provider-icon', { 'aria-hidden': 'true' }));
@@ -639,7 +639,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 
 		if (hasSignedInCodexChatGPTAccount(codexAccount, codexAccountVisible)) {
 			const accountSection = append(identities, $('section.sessions-account-titlebar-panel-provider-account', {
-				'aria-label': localize('chatGPTAccountSectionLabel', "ChatGPT account")
+				'aria-label': localize('sater.sessions.account.chatGPTSection', "ChatGPT account")
 			}));
 			const accountIdentity = append(accountSection, $('.sessions-account-titlebar-panel-provider-identity'));
 			const avatar = append(accountIdentity, $('img.sessions-account-titlebar-panel-provider-avatar', {
@@ -662,7 +662,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 				}
 			}));
 			const accountName = append(accountIdentity, $('.sessions-account-titlebar-panel-provider-name'));
-			accountName.textContent = codexAccount.email ?? localize('chatGPTAccountName', "ChatGPT");
+			accountName.textContent = codexAccount.email ?? localize('sater.sessions.account.chatGPTName', "ChatGPT");
 			const accountActions = append(accountIdentity, $('.sessions-account-titlebar-panel-provider-actions'));
 			const accountActionBar = panelStore.add(new ActionBar(accountActions));
 			panelStore.add(accountActionBar.onWillRun(() => {
@@ -671,14 +671,14 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			}));
 			accountActionBar.push(panelStore.add(new Action(
 				'codex.manageChatGPTModels',
-				localize('manageChatGPTModels', "Manage ChatGPT Models"),
+				localize('sater.sessions.account.manageChatGPTModels', "Manage ChatGPT Models"),
 				ThemeIcon.asClassName(Codicon.openai),
 				true,
 				() => this.commandService.executeCommand(MANAGE_CHAT_COMMAND_ID, '@provider:"ChatGPT"'),
 			)), { icon: true, label: false });
 			accountActionBar.push(panelStore.add(new Action(
 				'codex.openAgentCustomizations',
-				localize('openCodexAgentCustomizations', "Agent Customizations for Codex"),
+				localize('sater.sessions.account.openCodexCustomizations', "Agent Customizations for Codex"),
 				ThemeIcon.asClassName(Codicon.settingsGear),
 				true,
 				() => this.commandService.executeCommand(AICustomizationManagementCommands.OpenEditor, {
@@ -688,7 +688,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			)), { icon: true, label: false });
 			accountActionBar.push(panelStore.add(new Action(
 				'codex.signOutOfChatGPT',
-				localize('signOutOfChatGPT', "Sign Out"),
+				localize('sater.sessions.account.signOutChatGPT', "Sign Out"),
 				ThemeIcon.asClassName(Codicon.signOut),
 				true,
 				() => this.codexAccountService.signOut(),
@@ -698,7 +698,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			const codexAccountActions = createCodexAccountMenuActions(this.codexAccountService, codexAccountVisible);
 			if (codexAccountActions.length) {
 				const accountSection = append(identities, $('section.sessions-account-titlebar-panel-provider-account.signed-out', {
-					'aria-label': localize('chatGPTAccountSectionLabel', "ChatGPT account")
+					'aria-label': localize('sater.sessions.account.chatGPTSection', "ChatGPT account")
 				}));
 				const accountIdentity = append(accountSection, $('.sessions-account-titlebar-panel-provider-identity'));
 				const accountIcon = append(accountIdentity, $('span.sessions-account-titlebar-panel-provider-icon', { 'aria-hidden': 'true' }));
@@ -723,7 +723,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 
 		if (this.shouldShowCopilotDashboardHover()) {
 			const footer = append(panel, $('section.sessions-account-titlebar-panel-footer', {
-				'aria-label': localize('sessionsAccountStatusSectionLabel', "Account status")
+				'aria-label': localize('sater.sessions.account.statusSection', "Account status")
 			}));
 			append(footer, this.createCopilotHoverContent({ compactQuotaLayout: true }));
 		}
@@ -794,12 +794,12 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		if (quotaUsage.kind === QuotaUsageKind.CreditsUsed) {
 			const creditsFormatted = formatter.value.format(quotaUsage.creditsUsed);
 			append(planRow, $('span.sessions-account-titlebar-panel-provider-usage-value', {
-				'aria-label': localize('copilotCreditsUsedTotal', "{0} credits used", creditsFormatted)
+				'aria-label': localize('sater.sessions.account.copilotCreditsUsedTotal', "{0} credits used", creditsFormatted)
 			}, creditsFormatted));
 		} else {
 			const usedPercentage = Math.floor(quotaUsage.usedPercentage);
-			const percentageLabel = localize('copilotCreditsUsedPercentageValue', "{0}%", usedPercentage);
-			const percentageAriaLabel = localize('copilotCreditsUsedPercentage', "{0}% credits used", usedPercentage);
+			const percentageLabel = localize('sater.sessions.account.copilotCreditsUsedPercentageValue', "{0}%", usedPercentage);
+			const percentageAriaLabel = localize('sater.sessions.account.copilotCreditsUsedPercentage', "{0}% credits used", usedPercentage);
 			const { used, total } = quotaUsage;
 
 			// Revealing the ratio is the only interaction, so this is a tab stop only when there is a ratio to reveal.
@@ -808,8 +808,8 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 			usageValue.setAttribute('aria-label', percentageAriaLabel);
 
 			if (used !== undefined && total !== undefined) {
-				const creditsValue = localize('copilotCreditsUsedRatioValue', "{0} / {1}", formatter.value.format(used), formatter.value.format(total));
-				const creditsAriaLabel = localize('copilotCreditsUsedRatio', "{0} / {1} credits used", formatter.value.format(used), formatter.value.format(total));
+				const creditsValue = localize('sater.sessions.account.copilotCreditsUsedRatioValue', "{0} / {1}", formatter.value.format(used), formatter.value.format(total));
+				const creditsAriaLabel = localize('sater.sessions.account.copilotCreditsUsedRatio', "{0} / {1} credits used", formatter.value.format(used), formatter.value.format(total));
 				const showCredits = () => {
 					usageValue.textContent = creditsValue;
 					usageValue.setAttribute('aria-label', creditsAriaLabel);
@@ -832,7 +832,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		} else {
 			detailRow.classList.add('without-reset');
 		}
-		append(detailRow, $('span.sessions-account-titlebar-panel-provider-usage-label', undefined, localize('copilotCreditsUsedLabel', "Credits used")));
+		append(detailRow, $('span.sessions-account-titlebar-panel-provider-usage-label', undefined, localize('sater.sessions.account.copilotCreditsUsedLabel', "Credits used")));
 	}
 
 	private appendChatGPTUsage(accountSection: HTMLElement): void {
@@ -840,20 +840,20 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		const usage = append(accountSection, $('.sessions-account-titlebar-panel-provider-usage'));
 		const planRow = append(usage, $('.sessions-account-titlebar-panel-provider-metric-row.primary'));
 		append(planRow, $('span.sessions-account-titlebar-panel-provider-plan', undefined, account.planType
-			? localize('chatGPTPlan', "ChatGPT {0}", account.planType.charAt(0).toUpperCase() + account.planType.slice(1))
-			: localize('chatGPTSubscription', "ChatGPT subscription")));
+			? localize('sater.sessions.account.chatGPTPlan', "ChatGPT {0}", account.planType.charAt(0).toUpperCase() + account.planType.slice(1))
+			: localize('sater.sessions.account.chatGPTSubscription', "ChatGPT subscription")));
 		if (!account.rateLimit) {
 			return;
 		}
 		const percentageFormatter = safeIntl.NumberFormat(language, { maximumFractionDigits: 0 });
 		const usedPercentage = percentageFormatter.value.format(account.rateLimit.usedPercent);
 		append(planRow, $('span.sessions-account-titlebar-panel-provider-usage-value', {
-			'aria-label': localize('chatGPTLimitUsedPercentage', "{0}% used", usedPercentage),
-		}, localize('chatGPTLimitUsedPercentageValue', "{0}%", usedPercentage)));
+			'aria-label': localize('sater.sessions.account.chatGPTLimitUsedPercentage', "{0}% used", usedPercentage),
+		}, localize('sater.sessions.account.chatGPTLimitUsedPercentageValue', "{0}%", usedPercentage)));
 		const detailRow = append(usage, $('.sessions-account-titlebar-panel-provider-metric-row.secondary'));
 		if (account.rateLimit.resetsAt) {
 			append(detailRow, $('span.sessions-account-titlebar-panel-provider-reset', undefined, localize(
-				'chatGPTLimitReset',
+				'sater.sessions.account.chatGPTLimitReset',
 				"{0} resets {1}",
 				this.getChatGPTLimitLabel(account.rateLimit.windowDurationMins),
 				fromNow(account.rateLimit.resetsAt * 1000, false, true),
@@ -861,7 +861,7 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		} else {
 			detailRow.classList.add('without-reset');
 		}
-		append(detailRow, $('span.sessions-account-titlebar-panel-provider-usage-label', undefined, localize('chatGPTLimitUsedLabel', "Limit used")));
+		append(detailRow, $('span.sessions-account-titlebar-panel-provider-usage-label', undefined, localize('sater.sessions.account.chatGPTLimitUsedLabel', "Limit used")));
 	}
 
 	private getCopilotResetLabel(quota: IQuotaSnapshot | undefined): string | undefined {
@@ -871,20 +871,20 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		}
 
 		return reset.hasTime
-			? localize('copilotCreditsResetAt', "Resets {0} at {1}", accountDateFormatter.value.format(reset.date), accountTimeFormatter.value.format(reset.date))
-			: localize('copilotCreditsReset', "Resets {0}", accountDateFormatter.value.format(reset.date));
+			? localize('sater.sessions.account.copilotCreditsResetAt', "Resets {0} at {1}", accountDateFormatter.value.format(reset.date), accountTimeFormatter.value.format(reset.date))
+			: localize('sater.sessions.account.copilotCreditsReset', "Resets {0}", accountDateFormatter.value.format(reset.date));
 	}
 
 	private getChatGPTLimitLabel(windowDurationMins: number | undefined): string {
 		if (windowDurationMins !== undefined) {
 			if (Math.abs(windowDurationMins - 7 * 24 * 60) <= 60) {
-				return localize('chatGPTWeeklyLimitUsed', "Weekly limit");
+				return localize('sater.sessions.account.chatGPTWeeklyLimitUsed', "Weekly limit");
 			}
 			if (Math.abs(windowDurationMins - 24 * 60) <= 60) {
-				return localize('chatGPTDailyLimitUsed', "Daily limit");
+				return localize('sater.sessions.account.chatGPTDailyLimitUsed', "Daily limit");
 			}
 		}
-		return localize('chatGPTUsageLimitUsed', "Usage limit");
+		return localize('sater.sessions.account.chatGPTUsageLimitUsed', "Usage limit");
 	}
 
 	private partitionMenuActions(rawActions: IAction[]): { signIn: IAction | undefined; signOut: IAction | undefined; personalize: IAction[]; other: IAction[] } {
@@ -946,10 +946,10 @@ class TitleBarAccountWidget extends BaseActionViewItem {
 		}
 
 		if (this.isAccountLoading) {
-			return localize('loadingAccountHeader', "Loading Account...");
+			return localize('sater.sessions.account.loadingHeader', "Loading Account...");
 		}
 
-		return localize('accountMenuHeaderFallback', "Account");
+		return localize('sater.sessions.account.headerFallback', "Account");
 	}
 
 	private getCopilotPlanLabel(): string {
@@ -1015,7 +1015,7 @@ registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: SessionsTitleBarAccountWidgetAction,
-			title: localize2('agentsAccountStatusTitleBar', "Agents Account and Status"),
+			title: localize2('sater.sessions.account.statusTitleBar', "Agents Account and Status"),
 			menu: {
 				id: Menus.TitleBarRightLayout,
 				group: 'navigation',
